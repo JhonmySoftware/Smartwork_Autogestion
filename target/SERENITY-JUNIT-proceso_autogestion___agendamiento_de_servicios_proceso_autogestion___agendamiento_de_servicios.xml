@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Proceso Autogestion - Agendamiento de servicios" skipped="0" tests="1" time="67.2" timestamp="2023-04-14 05:42:19"><testcase name="Proceso Autogestion - Agendamiento de servicios"><failure message="&#10;Expected: an element that is present&#10;     but: no matching element found by name: checkedG was not present" type="java.lang.AssertionError">
+Expected: an element that is present
+     but: no matching element found by name: checkedG was not present</failure><system-err>
+Expected: an element that is present
+     but: no matching element found by name: checkedG was not present&#13;
+com.infotracktest.autogestion.tasks.Autogestion.performAs(Autogestion.java:90)&#13;
+com.infotracktest.autogestion.definition.MyStepdefs.creaLaOrdenDeServicio(MyStepdefs.java:26)&#13;
+cucumber.runner.Runner.runPickle(Runner.java:80)&#13;
+worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)&#13;
+worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)&#13;
+</system-err></testcase></testsuite>

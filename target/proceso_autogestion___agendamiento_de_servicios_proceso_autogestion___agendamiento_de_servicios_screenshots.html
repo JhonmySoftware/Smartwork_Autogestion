@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!--[if IE 7]>
+<!--<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">-->
+
+<link rel="stylesheet" type="text/css" href="fontawesome-free-5.7.2-web/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="fontawesome-free-5.7.2-web/css/v4-shims.min.css">
+
+<!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><link rel="stylesheet" type="text/css" href="chartist/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.css">
+<link rel="stylesheet" type="text/css" href="chartist/dist/chartist.min.css">
+<script src="chartist/dist/chartist.min.js"></script>
+<script src="chartist/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js"></script>
+<!-- Required Stylesheets -->
+<link href="bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
+<!-- Required Javascript -->
+<script src="bootstrap-treeview/dist/bootstrap-treeview.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.10.19/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.10.19/datatables.min.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="datatables/1.10.19/datatables.bootstrap4.min.js"></script>
+<link type="text/css" href="datatables/1.10.19/datatables.bootstrap4.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">
+                <span class="projecttitle">Automatización Autogestión</span>
+                <span class="projectsubtitle"></span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="feature_proceso_autogestion_-_agendamiento_de_servicios.html">Proceso Autogestion - Agendamiento De Servicios</a></span>
+                > <span class="truncate-60"><a
+                    href="proceso_autogestion___agendamiento_de_servicios_proceso_autogestion___agendamiento_de_servicios.html">Proceso Autogestion - Agendamiento de servicios </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+        <li >
+            <a href="requirement_type_feature.html"><i class="fa fa-comments-o"></i> Features</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 14-04-2023 17:42</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Proceso Autogestion - Agendamiento De Servicios </span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;"
+                                    <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;" href="tag_caso01.html">Caso01
+                                    (tag)</a>
+                                </span>
+                            </p>
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;"
+                                    <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;" href="tag_requerimiento01.html">Requerimiento01
+                                    (tag)</a>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><a href='##beforetable'><i class='fa fa-times-circle failure-icon fa-2x' title='FAILURE'></i></a></span>
+                            <span class="test-case-title">
+                                <span class="failing-color">Proceso Autogestion - Agendamiento de servicios
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+            <div class="screenshotFailure panel panel-danger">
+
+    <div style="display:block">
+        <div class="table">
+            <div class="row">
+                <div class="col-sm-10" style="padding-left:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
+                    <span class="error-message error-message-title">Assertion error: Expected: an element that is present but: no matching element found by name: checkedG was not present</span>
+                </div>
+                <div class="col-sm-2">
+                    <a class="btn btn-warning details-button" data-toggle="collapse" href="#stacktraceModal-overall""
+                       role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="far fa-eye"></i> More details</a>
+                </div>
+             </div>
+        </div>
+    <div>
+
+    <!-- Details Section -->
+    <div class="row stacktrace-details">
+      <div class="col">
+        <div class="collapse multi-collapse" id="stacktraceModal-overall">
+            <div class="card">
+                <div class="card-header">
+                    <h4>java.lang.AssertionError </h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <pre>com.infotracktest.autogestion.tasks.Autogestion.performAs(Autogestion.java:90)<br />com.infotracktest.autogestion.definition.MyStepdefs.creaLaOrdenDeServicio(MyStepdefs.java:26)<br />cucumber.runner.Runner.runPickle(Runner.java:80)<br />worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)<br />worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)<br /></pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                <div class="panel-body">
+                    <a href="pagesource7931452437709834646.html.txt" target="_blank" class="btn btn-info">HTML Source</a>
+                </div>
+            </div>
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="834d0216f9baae109b23594ee17bc1ce9ccb9d887aee93eac5db22984e0023bf.png" title=" Dado el usuario final cuando desee crear o agendar una orden de servicio" width="1366"/>
+                <img src="834d0216f9baae109b23594ee17bc1ce9ccb9d887aee93eac5db22984e0023bf.png" title=" Jhon abrir pagina" width="1366"/>
+                <img src="834d0216f9baae109b23594ee17bc1ce9ccb9d887aee93eac5db22984e0023bf.png" title=" jhon opens the Object abrir pagina" width="1366"/>
+                <img src="aab7e2383a7e60923d93243bd21ad10fe33748ad5b8b8afc7df486a36a634d75.png" title=" Jhon abrir pagina (completed)" width="1366"/>
+                <img src="aab7e2383a7e60923d93243bd21ad10fe33748ad5b8b8afc7df486a36a634d75.png" title=" Dado el usuario final cuando desee crear o agendar una orden de servicio (completed)" width="1366"/>
+                <img src="4429cfcd2148a8f1c2368ca6f979af496de001be5315be5221ad158fa6c1e512.png" title=" Cuando Crea la orden de servicio" width="1366"/>
+                <img src="4429cfcd2148a8f1c2368ca6f979af496de001be5315be5221ad158fa6c1e512.png" title=" Jhon autogestion" width="1366"/>
+                <img src="4429cfcd2148a8f1c2368ca6f979af496de001be5315be5221ad158fa6c1e512.png" title=" jhon clicks on Heabeas Data" width="1366"/>
+                <img src="64566498483fac9ccc92d8e54b44e670f5a6d97e5aa32bc0802cf3f62050ddec.png" title=" jhon clicks on Seleccionar el tipo de documento" width="1366"/>
+                <img src="d14cd2c27c806e344ceb5782abcb71a947ca349667678506872dfcdb5698da61.png" title=" Jhon seleccionar tipo documento" width="1366"/>
+                <img src="8804cf931c2c7af67b18097a963742d0ee8a0ab49e2753f20b7825e29d894b80.png" title=" jhon enters '1.012439356E9' into Seleccionar el tipo de documento" width="1366"/>
+                <img src="7b22c26354048495dec1786d46db92d9ba76a42d2bf0590e8cc6080700d7e3ba.png" title=" jhon enters 'jhon.quinones@infotrack.com.co' into &iquest;Cu&aacute;l es tu correo electr&oacute;nico?" width="1366"/>
+                <img src="55fe074e5929fb5959944f07ce734b66e04c4151725a1159b5f95f60a106b946.png" title=" jhon enters 'QA 1' into &iquest;Cuales son tus apellidos?" width="1366"/>
+                <img src="48820756c4a8117635b711025db2674a62dd3fd9a73eca5876b2cb9294922df2.png" title=" jhon enters 'TEST 1' into &iquest;Cual es tu telefono fijo?" width="1366"/>
+                <img src="1de70f522c718d38beac0f082cabf85b90ada585ab495bffb66ca00b541cc77c.png" title=" jhon enters '3.022381854E9' into Ingresa tu numero celular" width="1366"/>
+                <img src="cd95e2076297e7eac67c70537c2054f9f62a9ea5798390ec89085675a78a1802.png" title=" jhon enters '3.02381854E8' into Seleccionar el tipo de documento" width="1366"/>
+                <img src="d8ec7c87a4adca6bdb01f538ce428f7f0008856bd629591d7c1198fd1bc98352.png" title=" jhon clicks on Continuar" width="1366"/>
+                <img src="f05e9f2b0d2f2ef3694883b4e6363108a2732efcef86edb47aad767a3c62b69b.png" title=" Jhon ubicacion servicio" width="1366"/>
+                <img src="f05e9f2b0d2f2ef3694883b4e6363108a2732efcef86edb47aad767a3c62b69b.png" title=" jhon enters 'Bogota' into Ciudad" width="1366"/>
+                <img src="64dcc89479911a2e1577f15d9eb10d60d884e961fc39fc40c7de4495f3894a41.png" title=" jhon clicks on Lista de ciudades" width="1366"/>
+                <img src="28cb25528b30e2e6b21f8236a09ef28f26eb0b38d5a6f36959970688c3088b9f.png" title=" jhon enters 'Cll 73 sur # 77 i 03' into Direccion" width="1366"/>
+                <img src="640d9ce5ea17d978d4cdbf4ae97086cc1fa9970a6fc48fc30eef708bab701399.png" title=" jhon clicks on Buscar la direcci&oacute;n" width="1366"/>
+                <img src="cdf5f67aaa9e99125c40f98203ee4b15f55ca0cb919a2221ab010a04cdae46b4.png" title=" jhon enters 'Bosa' into Datos adicionales" width="1366"/>
+                <img src="f559404fbdca827360a03861f3c7eb5c1a7f07b98103718f5c4699d96856cdf9.png" title=" jhon clicks on Continuar ubicaci&oacute;n servicio" width="1366"/>
+                <img src="6cd6af7c3f8dd4e952bd444770352a0f1587fea171c07a969bdf5afa6402f190.png" title=" Jhon ubicacion servicio (completed)" width="1366"/>
+                <img src="8b7d1e1966405606c1bfe4cfecdf53c6fbd548021f15955522ebfed44a353bbb.png" title=" Jhon datos servicio" width="1366"/>
+                <img src="8b7d1e1966405606c1bfe4cfecdf53c6fbd548021f15955522ebfed44a353bbb.png" title=" jhon enters 'Mantenimiento' into &iquest;Qu&eacute; tipo de servicio solicitas?" width="1366"/>
+                <img src="c70a61adb7735244f832a6a5d1ee5538860ebf71cf4103409efcb11e857d85bc.png" title=" jhon clicks on &iquest;Qu&eacute; tipo de servicio solicitas? Lista" width="1366"/>
+                <img src="72b907827c204f1d74a936d482aa07ae34111a473761f23d34fa393103625d6a.png" title=" jhon enters 'CALENTADOR 7131/GLP PASO 13LTS.' into &iquest;Cu&aacute;l es el producto?" width="1366"/>
+                <img src="efe146c6f9fc8c8a37a6bae176372d69e3647089cf61ce86568db29fccc2eba9.png" title=" jhon clicks on &iquest;Cu&aacute;l es el producto? Lista" width="1366"/>
+                <img src="067b9e3b5ef50f8ca2010fee5e1f85f683838c4bb130e510aa5a606aac4cb2a2.png" title=" jhon enters 'BOTA AGUA' into &iquest;Cu&aacute;l es el motivo de la reparaci&oacute;n?" width="1366"/>
+                <img src="d7d83a3ef22359bf1745dbab8df21707531c5cd20bbf2b9cdb7780b08554e3c7.png" title=" jhon clicks on &iquest;Cu&aacute;l es el motivo de la reparaci&oacute;n? Lista" width="1366"/>
+                <img src="edabc76391f02f0bf6f66c6c367cc3191bb40f4e482e384e39e1cc098b3a9244.png" title=" jhon enters 'QA AUTOMOTION' into observaciones" width="1366"/>
+                <img src="9a7d9ebac60e765c0f4b409eef2a636728ede7c5d5555dbc2f60fe850c570edd.png" title=" jhon clicks on Rango AM" width="1366"/>
+                <img src="7a4f8d92db9d324c6c81bcb1833276aaf920d9e0f814cc6c3f30fcc042525f1f.png" title=" jhon enters '1.012439356E9' into Rango PM" width="1366"/>
+                <img src="3aa8a2ea4711c0f1bf6349b20c183aca2acace49c0ff56560cd1305d63a3b446.png" title=" jhon clicks on Fecha" width="1366"/>
+                <img src="3aa8a2ea4711c0f1bf6349b20c183aca2acace49c0ff56560cd1305d63a3b446.png" title=" Jhon datos servicio (completed)" width="1366"/>
+                <img src="b451f4cb0e47c7707fb50ebcdc4a5e7b6519fc08bfe37fa216b5a6ffd86e1a9e.png" title=" Jhon autogestion (completed): <span class='failing-color'>FAILURE</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 2.0.90</span>
+</div>
+</body>
+</html>
