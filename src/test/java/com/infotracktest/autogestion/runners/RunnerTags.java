@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features"
         , snippets = SnippetType.CAMELCASE
-        //, tags = "@Requerimiento02"
+        , tags = "@Requerimiento01"
         , glue = "com.infotracktest.autogestion.definition")
 
 public class RunnerTags {

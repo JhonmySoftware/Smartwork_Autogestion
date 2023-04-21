@@ -3,6 +3,7 @@ package com.infotracktest.autogestion.interactions;
 import com.infotracktest.autogestion.models.FormularioAutogestion;
 import com.infotracktest.autogestion.models.FormularioUbicacion;
 import com.infotracktest.autogestion.tasks.Autogestion;
+import com.infotracktest.autogestion.userinterfaces.ObjectAutogestion;
 import com.infotracktest.autogestion.userinterfaces.ObjectdatosServicio;
 import com.infotracktest.autogestion.userinterfaces.ObjectubicacionServicio;
 import com.infotracktest.autogestion.utlis.ExcelReader;
@@ -80,6 +81,7 @@ public class ubicacionServicio implements Interaction {
             formulariou.setCiudad(row.get("Ciudad"));
             formulariou.setDireccion(row.get("Direccion"));
             formulariou.setDatosAdicionales(row.get("DatosAdicionales"));
+
             actor.attemptsTo(Wait.until(WebElementQuestion.the(ObjectubicacionServicio.Ciudad),
                             WebElementStateMatchers.isVisible()).forNoLongerThan(10).seconds(),
                     Enter.theValue(formulariou.getCiudad()).into(ObjectubicacionServicio.Ciudad),
@@ -88,21 +90,20 @@ public class ubicacionServicio implements Interaction {
                     Click.on(ObjectubicacionServicio.Buscar)
             );
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             actor.attemptsTo(
                     Enter.theValue(formulariou.getDatosAdicionales())
-                            .into(ObjectubicacionServicio.DatosAdicionales),
-                    Click.on(ObjectubicacionServicio.Continuar)
+                            .into(ObjectubicacionServicio.DatosAdicionales)
+
             );
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            break; // detener el ciclo en la primera iteración
+            actor.attemptsTo(Click.on(ObjectubicacionServicio.Continuar));
+            // Datos del servicio
+            actor.attemptsTo(DatosServicio.withExcelFile());
+
+
         }
 
 

@@ -2,6 +2,7 @@ package com.infotracktest.autogestion.interactions;
 
 import com.infotracktest.autogestion.models.FormularioUbicacion;
 import com.infotracktest.autogestion.models.FormulariodatosServicio;
+import com.infotracktest.autogestion.tasks.Autogestion;
 import com.infotracktest.autogestion.userinterfaces.ObjectdatosServicio;
 import com.infotracktest.autogestion.utlis.ExcelReader;
 import net.serenitybdd.screenplay.Actor;
@@ -9,6 +10,7 @@ import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.questions.WebElementQuestion;
 import net.serenitybdd.screenplay.waits.Wait;
@@ -65,6 +67,9 @@ public class DatosServicio implements Interaction {
     public <T extends Actor> void performAs(T actor) {
         // Crear una instancia de UbicacionServicio con los datos de prueba inicializados a partir del archivo de Excel por defecto
         DatosServicio datosServicio = new DatosServicio(DEFAULT_FILE_PATH);
+        // Obtener el índice de la última fila procesada en la última ejecución
+        int lastIndex = Integer.parseInt(System.getProperty("lastProcessedIndex", "-1"));
+
         for (Map<String, String> row : DatosServicio.testData) {
             FormulariodatosServicio formulariods = new FormulariodatosServicio();
             formulariods.setTipoServicio(row.get("TipoServicio"));
@@ -76,7 +81,10 @@ public class DatosServicio implements Interaction {
             formulariods.setFecha(row.get("Fecha"));
 
             // Realizar las acciones en el formulario datos del servicio
-            actor.attemptsTo(
+            actor.attemptsTo(Wait.until(
+                            WebElementQuestion.the(ObjectdatosServicio.TipoServicio),
+                            WebElementStateMatchers.isPresent()
+                    ).forNoLongerThan(20).seconds(),
                     Enter.theValue(formulariods.getTipoServicio()).into(ObjectdatosServicio.TipoServicio),
                     Click.on(ObjectdatosServicio.TipoServiciolist),
                     Enter.theValue(formulariods.getProducto()).into(ObjectdatosServicio.producto),
@@ -85,6 +93,11 @@ public class DatosServicio implements Interaction {
                     Click.on(ObjectdatosServicio.fallalist),
                     Enter.theValue(formulariods.getObservaciones()).into(ObjectdatosServicio.observaciones));
 
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
             // Seleccionar el rango horario de acuerdo a lo establecido en el formato excel.
             if (formulariods.getRango().equals("AM")) {
@@ -95,11 +108,37 @@ public class DatosServicio implements Interaction {
 
             // fecha e identificador externo
             actor.attemptsTo(
+                    Wait.until(
+                            WebElementQuestion.the(ObjectdatosServicio.Fecha),
+                            WebElementStateMatchers.isCurrentlyEnabled()
+                    ).forNoLongerThan(10).seconds());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Fecha del servicio a agendar
+            actor.attemptsTo(
                     Enter.theValue(formulariods.getiDExterno()).into(ObjectdatosServicio.idExterno),
-                    Click.on(ObjectdatosServicio.Fecha)
+                    Click.on(ObjectdatosServicio.Fecha),
+                    Click.on(ObjectdatosServicio.OK),
+                    Click.on(ObjectdatosServicio.Programar)
             );
-            break; // Detener la primera iteración
+            actor.attemptsTo(Wait.until(WebElementQuestion.the(ObjectdatosServicio.UbicionServicio),
+                           WebElementStateMatchers.isPresent()).forNoLongerThan(10).seconds(),
+                    Scroll.to(ObjectdatosServicio.UbicionServicio),
+                    Click.on(ObjectdatosServicio.Finalizar)
+            );
+
+
+            // Augestión
+            actor.attemptsTo(Autogestion.withExcelFile());
 
         }
+
+
     }
+
 }
+

@@ -38,8 +38,16 @@ public class ObjectdatosServicio extends PageObject {
             .located(By.id("idExterno"));
 
     public static final Target Fecha = Target.the("Fecha")
-            .located(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='PM'])[1]/following::*[name()='svg'][1]"));
+            .located(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='PM'])[1]/following::*[name()='svg'][1]/.."));
+
+    public static final Target OK = Target.the("Confirmar Fecha seleccionada")
+            .located(By.xpath("(//span[normalize-space()='OK'])[1]"));
 
     public static final Target Programar = Target.the("Programar")
             .located(By.xpath("(//span[normalize-space()='Programar'])[1]"));
+
+    public static final Target UbicionServicio = Target.the("Ubicación del servicio")
+            .located(By.xpath("//strong[normalize-space()='Ubicación del servicio']"));
+    public static final Target Finalizar = Target.the("Finalizar Orden de servicio")
+            .located(By.xpath("(//span[@class='MuiButton-label'])[1]/.."));
 }

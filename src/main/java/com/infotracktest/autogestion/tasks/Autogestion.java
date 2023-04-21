@@ -114,8 +114,6 @@ public class Autogestion implements Task {
             // Ubicación
             actor.attemptsTo(ubicacionServicio.withExcelFile());
 
-            //Datos del servicio
-            actor.attemptsTo(DatosServicio.withExcelFile());
 
         }
 
