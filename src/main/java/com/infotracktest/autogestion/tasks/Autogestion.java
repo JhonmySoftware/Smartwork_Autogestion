@@ -1,20 +1,24 @@
 package com.infotracktest.autogestion.tasks;
 
-import com.infotracktest.autogestion.interactions.DatosServicio;
 import com.infotracktest.autogestion.interactions.SeleccionarTipoDocumento;
-import com.infotracktest.autogestion.interactions.ubicacionServicio;
 import com.infotracktest.autogestion.models.FormularioAutogestion;
+import com.infotracktest.autogestion.models.FormularioUbicacion;
+import com.infotracktest.autogestion.models.FormulariodatosServicio;
 import com.infotracktest.autogestion.userinterfaces.ObjectAutogestion;
+import com.infotracktest.autogestion.userinterfaces.ObjectdatosServicio;
+import com.infotracktest.autogestion.userinterfaces.ObjectubicacionServicio;
 import com.infotracktest.autogestion.utlis.ExcelReader;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.conditions.Check;
+import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.questions.WebElementQuestion;
 import net.serenitybdd.screenplay.waits.Wait;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,13 +41,15 @@ public class Autogestion implements Task {
         return Tasks.instrumented(Autogestion.class);
     }
 
-    // Nombre de la hoja de cálculo que contiene los datos de prueba
+    /**
+     * Nombre de la hoja de cálculo que contiene los datos de prueba*/
     private static final String SHEET_NAME = "testData";
 
-    // Ubicación del archivo de hoja de cálculo por defecto
+    /**
+     * Lista de mapas de cadenas de texto que representan los datos de prueba
+     */
     private static final String DEFAULT_FILE_PATH = "src\\test\\resources\\data\\testData.xls";
 
-    // Lista de mapas de cadenas de texto que representan los datos de prueba
     private List<Map<String, String>> testData;
 
 
@@ -72,12 +78,22 @@ public class Autogestion implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        // Crear una instancia de Autogestion con los datos de prueba inicializados a partir del archivo de Excel por defecto
+        /**
+         * Crear una instancia de Autogestion con los datos de prueba inicializados a partir del archivo de Excel por defecto
+         * */
         Autogestion autogestion = new Autogestion(DEFAULT_FILE_PATH);
 
-        // Recorre todas las filas de la lista testData y extrae el valor de la columna "NumDocumento" de cada una.
+        /**
+         * Recorre todas las filas de la lista testData y extrae el valor de la columna "NumDocumento" de cada una.
+         * */
         for (Map<String, String> row : autogestion.testData) {
+
+            /**
+             * Instancias
+             * */
             FormularioAutogestion formulario = new FormularioAutogestion();
+            FormularioUbicacion formulariou = new FormularioUbicacion();
+            FormulariodatosServicio formulariods = new FormulariodatosServicio();
             formulario.setTipoDocumentos(row.get("TipoDocumento"));
             formulario.setNumDocumentos(row.get("NumDocumento"));
             formulario.setCorreoElectronicos(row.get("CorreoElectronico"));
@@ -86,11 +102,27 @@ public class Autogestion implements Task {
             formulario.setApellidoss(row.get("Apellidos"));
             formulario.setTFijos(row.get("TFijo"));
             formulario.setNCelulars(row.get("NCelular"));
+            /**
+             * Datos de ubicación en el excel
+             * */
+            formulariou.setCiudad(row.get("Ciudad"));
+            formulariou.setDireccion(row.get("Direccion"));
+            formulariou.setDatosAdicionales(row.get("DatosAdicionales"));
+            /**
+             * Datos del servicio
+             * */
+            formulariods.setTipoServicio(row.get("TipoServicio"));
+            formulariods.setProducto(row.get("producto"));
+            formulariods.setFalla(row.get("falla"));
+            formulariods.setObservaciones(row.get("observaciones"));
+            formulariods.setRango(row.get("Rango"));
+            formulariods.setiDExterno(row.get("idExterno"));
+            formulariods.setFecha(row.get("Fecha"));
 
             actor.attemptsTo(Wait.until(
                             WebElementQuestion.the(ObjectAutogestion.checkedG),
                             WebElementStateMatchers.isPresent()
-                    ).forNoLongerThan(30).seconds(),
+                    ).forNoLongerThan(60).seconds(),
                     Click.on(ObjectAutogestion.checkedG),
                     Click.on(ObjectAutogestion.TipoDocumento),
                     SeleccionarTipoDocumento.conValor(formulario.getTipoDocumentos()),
@@ -111,11 +143,96 @@ public class Autogestion implements Task {
                     Click.on(ObjectAutogestion.Continuar)
             );
 
-            // Ubicación
-            actor.attemptsTo(ubicacionServicio.withExcelFile());
+            /**
+             * Interfaz datos de Ubicación
+             * */
+            actor.attemptsTo(Wait.until(WebElementQuestion.the(ObjectubicacionServicio.Ciudad),
+                            WebElementStateMatchers.isVisible()).forNoLongerThan(60).seconds(),
+                    Enter.theValue(formulariou.getCiudad()).into(ObjectubicacionServicio.Ciudad),
+                    Click.on(ObjectubicacionServicio.ListCiudad),
+                    Enter.theValue(formulariou.getDireccion()).into(ObjectubicacionServicio.Direccion),
+                    Click.on(ObjectubicacionServicio.Buscar)
+            );
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            actor.attemptsTo(
+                    Enter.theValue(formulariou.getDatosAdicionales())
+                            .into(ObjectubicacionServicio.DatosAdicionales)
 
+            );
+            actor.attemptsTo(Scroll.to(ObjectubicacionServicio.Continuar),
+                    Click.on(ObjectubicacionServicio.Continuar));
 
+            /**
+             * Interfaz de Datos del servicio
+             * */
+
+            /**
+             * Realizar las acciones en el formulario datos del servicio
+             * */
+            actor.attemptsTo(Wait.until(
+                            WebElementQuestion.the(ObjectdatosServicio.TipoServicio),
+                            WebElementStateMatchers.isPresent()
+                    ).forNoLongerThan(60).seconds(),
+                    Enter.theValue(formulariods.getTipoServicio()).into(ObjectdatosServicio.TipoServicio),
+                    Click.on(ObjectdatosServicio.TipoServiciolist),
+                    Enter.theValue(formulariods.getProducto()).into(ObjectdatosServicio.producto),
+                    Click.on(ObjectdatosServicio.productolist),
+                    Enter.theValue(formulariods.getFalla()).into(ObjectdatosServicio.falla),
+                    Click.on(ObjectdatosServicio.fallalist),
+                    Enter.theValue(formulariods.getObservaciones()).into(ObjectdatosServicio.observaciones));
+
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            /**
+             * Seleccionar el rango horario de acuerdo a lo establecido en el formato excel.
+             * */
+            if (formulariods.getRango().equals("AM")) {
+                actor.attemptsTo(Click.on(ObjectdatosServicio.Rangoam));
+            } else {
+                actor.attemptsTo(Click.on(ObjectdatosServicio.Rangopm));
+            }
+
+            /**
+             * fecha e identificador externo
+             * */
+            actor.attemptsTo(
+                    Wait.until(
+                            WebElementQuestion.the(ObjectdatosServicio.Fecha),
+                            WebElementStateMatchers.isEnabled()
+                    ).forNoLongerThan(60).seconds());
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            /**
+             *  Fecha del servicio a agendar
+             * * */
+            actor.attemptsTo(
+                    Enter.theValue(formulariods.getiDExterno()).into(ObjectdatosServicio.idExterno),
+                    Click.on(ObjectdatosServicio.Fecha),
+                    Click.on(ObjectdatosServicio.OK),
+                    Click.on(ObjectdatosServicio.Programar)
+            );
+            actor.attemptsTo(Wait.until(WebElementQuestion.the(ObjectdatosServicio.UbicionServicio),
+                            WebElementStateMatchers.isPresent()).forNoLongerThan(10).seconds(),
+                    Scroll.to(ObjectdatosServicio.UbicionServicio),
+                    Click.on(ObjectdatosServicio.Finalizar)
+            );
         }
+        /**
+         * Una vez finalice de crear los casos del archico cierro la ventana del navegador*/
+        WebDriver driver = new ChromeDriver(); // Inicializar el WebDriver con el navegador deseado
+        driver.quit(); // Cerrar el navegador y liberar recursos
 
 
 
