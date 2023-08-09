@@ -219,12 +219,14 @@ public class Autogestion implements Task {
              * * */
             actor.attemptsTo(
                     Enter.theValue(formulariods.getiDExterno()).into(ObjectdatosServicio.idExterno),
-                    Click.on(ObjectdatosServicio.Fecha),
+                    Wait.until(WebElementQuestion.the(ObjectdatosServicio.Fecha),
+                            WebElementStateMatchers.isPresent()).forNoLongerThan(60).seconds(),
+            Click.on(ObjectdatosServicio.Fecha),
                     Click.on(ObjectdatosServicio.OK),
                     Click.on(ObjectdatosServicio.Programar)
             );
             actor.attemptsTo(Wait.until(WebElementQuestion.the(ObjectdatosServicio.UbicionServicio),
-                            WebElementStateMatchers.isPresent()).forNoLongerThan(10).seconds(),
+                            WebElementStateMatchers.isPresent()).forNoLongerThan(60).seconds(),
                     Scroll.to(ObjectdatosServicio.UbicionServicio),
                     Click.on(ObjectdatosServicio.Finalizar)
             );
