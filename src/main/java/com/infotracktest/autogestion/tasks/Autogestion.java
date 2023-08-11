@@ -7,6 +7,7 @@ import com.infotracktest.autogestion.models.FormulariodatosServicio;
 import com.infotracktest.autogestion.userinterfaces.ObjectAutogestion;
 import com.infotracktest.autogestion.userinterfaces.ObjectdatosServicio;
 import com.infotracktest.autogestion.userinterfaces.ObjectubicacionServicio;
+import com.infotracktest.autogestion.utlis.DatosRandom;
 import com.infotracktest.autogestion.utlis.ExcelReader;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -94,8 +95,12 @@ public class Autogestion implements Task {
             FormularioAutogestion formulario = new FormularioAutogestion();
             FormularioUbicacion formulariou = new FormularioUbicacion();
             FormulariodatosServicio formulariods = new FormulariodatosServicio();
+            int numeroDocumentoAleatorio = DatosRandom.numDocumentoAleatorio();
+            /**
+             * Datos del usuario
+             * */
             formulario.setTipoDocumentos(row.get("TipoDocumento"));
-            formulario.setNumDocumentos(row.get("NumDocumento"));
+            formulario.setNumDocumentos(row.get("NumDocumento")+numeroDocumentoAleatorio);
             formulario.setCorreoElectronicos(row.get("CorreoElectronico"));
             formulario.setRazonSocials(row.get("RazonSocial"));
             formulario.setNombress(row.get("Nombres"));
@@ -116,7 +121,7 @@ public class Autogestion implements Task {
             formulariods.setFalla(row.get("falla"));
             formulariods.setObservaciones(row.get("observaciones"));
             formulariods.setRango(row.get("Rango"));
-            formulariods.setiDExterno(row.get("idExterno"));
+            formulariods.setiDExterno(row.get("idExterno")+numeroDocumentoAleatorio);
             formulariods.setFecha(row.get("Fecha"));
 
             actor.attemptsTo(Wait.until(
@@ -206,7 +211,7 @@ public class Autogestion implements Task {
             actor.attemptsTo(
                     Wait.until(
                             WebElementQuestion.the(ObjectdatosServicio.Fecha),
-                            WebElementStateMatchers.isEnabled()
+                            WebElementStateMatchers.isClickable()
                     ).forNoLongerThan(60).seconds());
             try {
                 Thread.sleep(3000);

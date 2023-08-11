@@ -1,0 +1,25 @@
+trigger:
+  - master
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+  - script: |
+      ./gradlew.bat clean test aggregate
+      copy build\reports\serenity\index.html $(Build.ArtifactStagingDirectory)
+    displayName: 'Ejecutar pruebas y generar informes'
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/build/test-results/test/*.xml'
+    displayName: 'Publicar resultados de pruebas'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'SerenityReports'
+    displayName: 'Publicar informes de Serenity BDD'
+
+
