@@ -25,4 +25,6 @@ public class ObjectubicacionServicio extends PageObject {
 
     public static final Target Continuar = Target.the("Continuar ubicación servicio")
             .located(By.xpath("(//span[normalize-space()='Continuar'])[1]"));
+
+
 }

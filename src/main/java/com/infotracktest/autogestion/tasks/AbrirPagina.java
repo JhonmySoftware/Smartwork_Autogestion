@@ -6,6 +6,11 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Open;
 
+import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.Tasks;
+import net.serenitybdd.screenplay.actions.Open;
+
 public class AbrirPagina implements Task {
 
     private ObjectAbrirPagina objectAbrirPagina;
@@ -16,8 +21,10 @@ public class AbrirPagina implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
+        System.setProperty("webdriver.edge.driver", "src/test/resources/driver/msedgedriver.exe");
 
         actor.attemptsTo(Open.browserOn(objectAbrirPagina));
+
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -25,3 +32,4 @@ public class AbrirPagina implements Task {
         }
     }
 }
+

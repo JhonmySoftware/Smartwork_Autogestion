@@ -4,20 +4,21 @@ import com.infotracktest.autogestion.interactions.SeleccionarTipoDocumento;
 import com.infotracktest.autogestion.models.FormularioAutogestion;
 import com.infotracktest.autogestion.models.FormularioUbicacion;
 import com.infotracktest.autogestion.models.FormulariodatosServicio;
+import com.infotracktest.autogestion.questions.VerOrdenServicio;
 import com.infotracktest.autogestion.userinterfaces.ObjectAutogestion;
 import com.infotracktest.autogestion.userinterfaces.ObjectdatosServicio;
 import com.infotracktest.autogestion.userinterfaces.ObjectubicacionServicio;
 import com.infotracktest.autogestion.utlis.DatosRandom;
 import com.infotracktest.autogestion.utlis.ExcelReader;
-import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.Task;
-import net.serenitybdd.screenplay.Tasks;
+import net.serenitybdd.screenplay.*;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Scroll;
+import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.questions.WebElementQuestion;
 import net.serenitybdd.screenplay.waits.Wait;
+import org.hamcrest.Matchers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -124,6 +125,17 @@ public class Autogestion implements Task {
             formulariods.setiDExterno(row.get("idExterno")+numeroDocumentoAleatorio);
             formulariods.setFecha(row.get("Fecha"));
 
+
+            /**
+             * No se recomienda utilizar el Thread sleep, se aplica por temas de lentitud
+             * del sitio web.
+             * */
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
             actor.attemptsTo(Wait.until(
                             WebElementQuestion.the(ObjectAutogestion.checkedG),
                             WebElementStateMatchers.isPresent()
@@ -211,7 +223,7 @@ public class Autogestion implements Task {
             actor.attemptsTo(
                     Wait.until(
                             WebElementQuestion.the(ObjectdatosServicio.Fecha),
-                            WebElementStateMatchers.isClickable()
+                            WebElementStateMatchers.isPresent()
                     ).forNoLongerThan(60).seconds());
             try {
                 Thread.sleep(3000);
@@ -232,12 +244,24 @@ public class Autogestion implements Task {
             );
             actor.attemptsTo(Wait.until(WebElementQuestion.the(ObjectdatosServicio.UbicionServicio),
                             WebElementStateMatchers.isPresent()).forNoLongerThan(60).seconds(),
-                    Scroll.to(ObjectdatosServicio.UbicionServicio),
-                    Click.on(ObjectdatosServicio.Finalizar)
+                    Scroll.to(ObjectdatosServicio.UbicionServicio)
             );
+            /**
+             * Validar que la creación del servicio se realice correctamente.
+             * */
+
+            OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
+                    Matchers.comparesEqualTo("Tu servicio ha sido programado")));
+
+
+            /**
+             * Finalizar el proceso.
+             * */
+            actor.attemptsTo(Click.on(ObjectdatosServicio.Finalizar));
         }
         /**
-         * Una vez finalice de crear los casos del archico cierro la ventana del navegador*/
+         * Una vez finalice de crear los casos del archico cierro la ventana del navegador
+         * */
         WebDriver driver = new ChromeDriver(); // Inicializar el WebDriver con el navegador deseado
         driver.quit(); // Cerrar el navegador y liberar recursos
 

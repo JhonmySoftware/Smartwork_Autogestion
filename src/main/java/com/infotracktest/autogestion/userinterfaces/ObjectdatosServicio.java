@@ -50,4 +50,7 @@ public class ObjectdatosServicio extends PageObject {
             .located(By.xpath("//strong[normalize-space()='Ubicación del servicio']"));
     public static final Target Finalizar = Target.the("Finalizar Orden de servicio")
             .located(By.xpath("(//span[@class='MuiButton-label'])[1]/.."));
+
+    public static final Target VerOrdenServicio = Target.the("Verificar la creación de la orden de servicio")
+            .located(By.xpath("//strong[text()='Tu servicio ha sido programado']"));
 }
