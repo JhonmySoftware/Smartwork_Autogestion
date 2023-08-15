@@ -1,25 +1,26 @@
-/* #################### IMPORTACION DE LIBRERIAS Y DECLARACION DE VARIABLES #################### */
 import java.text.SimpleDateFormat
 
 def dateFormat = new SimpleDateFormat("yyyyMMddHHmm")
 def date = new Date()
 def timestamp = dateFormat.format(date).toString()
-def correo = "jhon.quinones@infotrack.com.co"
-/* ####################################################################################### */
+def correo = "jhonmydanc@gmail.com"
 
 pipeline {
-      agent any
-      stages {
-
-          //Ejecutar Automatizacion
-          stage('Run Test') {
-              steps {
-                  script {
-                     bat("gradle clean test aggregate")
+    agent any
+    tools {
+        // Específica la herramienta Gradle que configuraste en "Configuración de herramientas globales"
+         gradle 'Gradle', 'C:\\Gradle\\gradle-8.0.2'
+    }
+    stages {
+        stage('Run Test') {
+            steps {
+                script {
+                    // Ejecuta el comando Gradle utilizando la herramienta configurada
+                    bat "gradle clean test aggregate"
                     echo 'Test Ejecutados Exitosamente'
-                  }
-              }
-          }
+                }
+            }
+        }
 
           //Realizar Reporte de la Ejecucion
           stage('Generate Reports') {
