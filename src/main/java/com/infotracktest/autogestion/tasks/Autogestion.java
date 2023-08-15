@@ -131,7 +131,7 @@ public class Autogestion implements Task {
              * del sitio web.
              * */
             try {
-                Thread.sleep(2000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -171,7 +171,7 @@ public class Autogestion implements Task {
                     Click.on(ObjectubicacionServicio.Buscar)
             );
             try {
-                Thread.sleep(3000);
+                Thread.sleep(6000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -203,7 +203,7 @@ public class Autogestion implements Task {
                     Enter.theValue(formulariods.getObservaciones()).into(ObjectdatosServicio.observaciones));
 
             try {
-                Thread.sleep(3000);
+                Thread.sleep(6000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -226,7 +226,7 @@ public class Autogestion implements Task {
                             WebElementStateMatchers.isPresent()
                     ).forNoLongerThan(60).seconds());
             try {
-                Thread.sleep(3000);
+                Thread.sleep(6000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

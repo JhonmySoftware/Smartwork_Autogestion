@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuite name="com.infotracktest.autogestion.runners.RunnerTags" tests="0" skipped="0" failures="0" errors="0" timestamp="1970-01-01T00:00:00" hostname="LTBG60836" time="0.0">
   <properties/>
-  <system-out><![CDATA[REGISTER BASE STEP LISTENER net.thucydides.core.steps.BaseStepListener@2a3c96e3
-
+  <system-out><![CDATA[
 1 Scenarios (?[32m1 passed?[0m)
 3 Steps (?[32m3 passed?[0m)
-1m9,674s
+1m6,343s
 
 ]]></system-out>
   <system-err><![CDATA[[Test worker] INFO net.thucydides.core.steps.ConsoleLoggingListener - 
@@ -26,7 +25,6 @@
 -------------------------------------------------------------------------------------
 
 [Test worker] INFO net.thucydides.core.steps.ConsoleLoggingListener - Test Suite Started: Proceso Autogestion - Agendamiento de servicios
-[Test worker] WARN net.thucydides.core.steps.BaseStepListener - testStarted: Proceso Autogestion - Agendamiento de servicios/proceso-autogestion---agendamiento-de-servicios;proceso-autogestion---agendamiento-de-servicios
 [Test worker] INFO net.thucydides.core.steps.ConsoleLoggingListener - 
  _____ _____ ____ _____   ____ _____  _    ____ _____ _____ ____  
 |_   _| ____/ ___|_   _| / ___|_   _|/ \  |  _ \_   _| ____|  _ \ 
@@ -37,6 +35,5 @@
 
 TEST STARTED: Proceso Autogestion - Agendamiento de servicios
 -------------------------------------------------------------------(proceso-autogestion---agendamiento-de-servicios;proceso-autogestion---agendamiento-de-servicios)
-[pool-2-thread-1] INFO net.thucydides.core.requirements.PackageRequirementsTagProvider - Loading requirements from package requirements at: net.thucydides.showcase.cucumber.junit
 ]]></system-err>
 </testsuite>

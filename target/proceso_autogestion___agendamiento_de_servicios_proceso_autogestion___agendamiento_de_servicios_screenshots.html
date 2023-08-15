@@ -41,12 +41,34 @@
 <script src="bootstrap-treeview/dist/bootstrap-treeview.min.js"></script><!-- DataTables -->
 <link type="text/css" href="datatables/1.10.19/datatables.min.css" rel="stylesheet" />
 <script type="text/javascript" src="datatables/1.10.19/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.10.19/time-elapsed-dhms.js"></script>
 
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="datatables/1.10.19/datatables.bootstrap4.min.js"></script>
 <link type="text/css" href="datatables/1.10.19/datatables.bootstrap4.min.css" rel="stylesheet" />
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
 <link rel="stylesheet" href="css/core.css"/>
 <link rel="stylesheet" href="css/link.css"/>
 <link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
@@ -132,7 +154,7 @@
             <a href="requirement_type_feature.html"><i class="fa fa-comments-o"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 15-08-2023 11:12</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 15-08-2023 15:00</span>
     <br style="clear:left"/>
 </div>
 
@@ -200,43 +222,43 @@
     <div id="contenttilttle">
         <div class="slider-wrapper theme-default">
             <div id="slider">
-                <img src="8efb5a94563558bbc8b400ad9ec84b30908fbd972d756bd3027057f5cd20ab22.png" title=" Dado el usuario final cuando desee crear o agendar una orden de servicio" width="1366"/>
-                <img src="8efb5a94563558bbc8b400ad9ec84b30908fbd972d756bd3027057f5cd20ab22.png" title=" Jhon abrir pagina" width="1366"/>
-                <img src="8efb5a94563558bbc8b400ad9ec84b30908fbd972d756bd3027057f5cd20ab22.png" title=" jhon opens the Object abrir pagina" width="1366"/>
+                <img src="488dc84851667a66b03d33cad58909dcdb57a299653a1f985a1b0a4a95e4ade3.png" title=" Dado el usuario final cuando desee crear o agendar una orden de servicio" width="1366"/>
+                <img src="488dc84851667a66b03d33cad58909dcdb57a299653a1f985a1b0a4a95e4ade3.png" title=" Jhon abrir pagina" width="1366"/>
+                <img src="488dc84851667a66b03d33cad58909dcdb57a299653a1f985a1b0a4a95e4ade3.png" title=" jhon opens the Object abrir pagina" width="1366"/>
                 <img src="8efb5a94563558bbc8b400ad9ec84b30908fbd972d756bd3027057f5cd20ab22.png" title=" Jhon abrir pagina (completed)" width="1366"/>
                 <img src="8efb5a94563558bbc8b400ad9ec84b30908fbd972d756bd3027057f5cd20ab22.png" title=" Dado el usuario final cuando desee crear o agendar una orden de servicio (completed)" width="1366"/>
-                <img src="fdf6de1641e5d039d2a1d621aad85d86426bdf9a1266fcd2454aa77a9fc64b0a.png" title=" Cuando Crea la orden de servicio" width="1366"/>
-                <img src="fdf6de1641e5d039d2a1d621aad85d86426bdf9a1266fcd2454aa77a9fc64b0a.png" title=" Jhon autogestion" width="1366"/>
-                <img src="fdf6de1641e5d039d2a1d621aad85d86426bdf9a1266fcd2454aa77a9fc64b0a.png" title=" jhon clicks on Heabeas Data" width="1366"/>
-                <img src="1441cee7ddec9b7e5ec1f686448a63b21879be1fc718e0737475d0ba6b06f15e.png" title=" jhon clicks on Seleccionar el tipo de documento" width="1366"/>
+                <img src="1d4e8c9606b5d3465c2c5838885db574f3d4cc232dc3765ffe133fd2869d6cdf.png" title=" Cuando Crea la orden de servicio" width="1366"/>
+                <img src="1d4e8c9606b5d3465c2c5838885db574f3d4cc232dc3765ffe133fd2869d6cdf.png" title=" Jhon autogestion" width="1366"/>
+                <img src="1d4e8c9606b5d3465c2c5838885db574f3d4cc232dc3765ffe133fd2869d6cdf.png" title=" jhon clicks on Heabeas Data" width="1366"/>
+                <img src="c78da1778d2f066b9fc6b61bc63c78c57a388d3448e036d75328f5e582493d10.png" title=" jhon clicks on Seleccionar el tipo de documento" width="1366"/>
                 <img src="9b17be215008310b055abc1ae0e42a5afda483d75ace36d889792f9bd5552702.png" title=" Jhon seleccionar tipo documento" width="1366"/>
-                <img src="3113ef0287de270699f58e9e5613c25bf1883042f1f2cc3049594af2929bc4d6.png" title=" jhon enters '1731067328' into Seleccionar el tipo de documento" width="1366"/>
-                <img src="3207339f9bac7d4451a0ea10de55e38ca23472ccedda3c4b91c5a4f5aeee3bc7.png" title=" jhon enters 'jhon.quinones1@infotrack.com.co' into &iquest;Cu&aacute;l es tu correo electr&oacute;nico?" width="1366"/>
-                <img src="39a1fe33923e8aaabd094bb2dceab73960f2f2621af454087d50a133ab583c69.png" title=" jhon enters 'Usuario' into &iquest;Cuales son tus apellidos?" width="1366"/>
-                <img src="79844087fcdc7ee8f9e1ddcc58604df04e92a015030e2eeb747d909d168b84b5.png" title=" jhon enters '1.0' into &iquest;Cual es tu telefono fijo?" width="1366"/>
-                <img src="7130f76e9922deb22b56e4894b9919eea4948a681c5d226ce3e3f0bf34ec40ff.png" title=" jhon enters '3.0E9' into Ingresa tu numero celular" width="1366"/>
-                <img src="bb7a44a5549fe0b757ba026ca9a9606018b2daaf9385ce05b109971a3bee054c.png" title=" jhon enters '3.0E9' into Seleccionar el tipo de documento" width="1366"/>
-                <img src="218a99deeacc9ff5459e503d6feb200d1e9e30b226054818ae6f8d1343777420.png" title=" jhon clicks on Continuar" width="1366"/>
+                <img src="7165f4e3cc90b7f4844cb3ecc3c81409360e2c52cb94735c6acb3ac1b46cb42b.png" title=" jhon enters '756180411' into Seleccionar el tipo de documento" width="1366"/>
+                <img src="e3a91bb20f72fcc105849abfd58bfabce1d0f3f73936cda99eb7cac48a9331da.png" title=" jhon enters 'jhon.quinones1@infotrack.com.co' into &iquest;Cu&aacute;l es tu correo electr&oacute;nico?" width="1366"/>
+                <img src="2f700a176737195b8a99ebfae5168e4441b91595866ace8e8d9230849f431c41.png" title=" jhon enters 'Usuario' into &iquest;Cuales son tus apellidos?" width="1366"/>
+                <img src="2fdab8c15120451e404d9716f65fd1f158e84a5fa643b6231a9e95acf6f6ea31.png" title=" jhon enters '1.0' into &iquest;Cual es tu telefono fijo?" width="1366"/>
+                <img src="4bbd38063c82617425d3b47a1d67dd3804734bc9ef377441afaf8d5645216279.png" title=" jhon enters '3.0E9' into Ingresa tu numero celular" width="1366"/>
+                <img src="ce39eab07ae1f097fb3dcecb1a3e3e4f408b666de367bb4abaa40f7c2d1760e7.png" title=" jhon enters '3.0E9' into Seleccionar el tipo de documento" width="1366"/>
+                <img src="cb0677844786062852d340d5583cb33a4b4ac2d4bffa4f833e27f64c89fddec5.png" title=" jhon clicks on Continuar" width="1366"/>
                 <img src="834dcc014db6d7398d1aa91487b79f3c80e088a2413a0b7ab2ca625459092b60.png" title=" jhon enters 'Bogota' into Ciudad" width="1366"/>
-                <img src="838c2a3d4548830e32c06bb1eaf20aeff77a7aa26232db5c2f494629bd4e3766.png" title=" jhon clicks on Lista de ciudades" width="1366"/>
+                <img src="f02ff7c3b50d8da5b3142904f2275dd71991d66a30222583e5f521356f8b1670.png" title=" jhon clicks on Lista de ciudades" width="1366"/>
                 <img src="7146a540f3a2019fdda8823d3aa96d10d0d24366e93e6185a74cb1c63f498449.png" title=" jhon enters 'Av. C. 127' into Direccion" width="1366"/>
-                <img src="f1935f3dc1dd6fbe34ba35861e1869cd915d2b6e8f1091ae50b63fbed2d48ee6.png" title=" jhon clicks on Buscar la direcci&oacute;n" width="1366"/>
-                <img src="e5e436be4b18fea6dadfb656e70d80af049e5e73ccea041078a2fd9301c6b856.png" title=" jhon enters 'Norte' into Datos adicionales" width="1366"/>
-                <img src="775d014a3c5e8630f984373a00bfb2d70033ebc786162f03e683999249d8427a.png" title=" jhon clicks on Continuar ubicaci&oacute;n servicio" width="1366"/>
-                <img src="91a11039dad9f48c427fb09de9e04549d41fe1c40ff45341839944e9ceda1251.png" title=" jhon enters 'Garantia' into &iquest;Qu&eacute; tipo de servicio solicitas?" width="1366"/>
-                <img src="7c0a7d154046054007764b5ddb9f78b9afce662a42af9a120d012e04b27d3e6f.png" title=" jhon clicks on &iquest;Qu&eacute; tipo de servicio solicitas? Lista" width="1366"/>
-                <img src="3ce2d48dc80339bcb1196e8485d7614f428ff8bd6652fa84959c43dc73308197.png" title=" jhon enters 'NEVERA 5.3 PIES ALMENDRA' into &iquest;Cu&aacute;l es el producto?" width="1366"/>
-                <img src="3ec922748b6d3734b37a796c7126515116c9a21693f42675cd34094506f4975d.png" title=" jhon clicks on &iquest;Cu&aacute;l es el producto? Lista" width="1366"/>
-                <img src="29a5f7cd46e026df4a8632eb425f9bd17511bd8dcdb2b63f81c3045aa759e955.png" title=" jhon enters 'BOTA AGUA' into &iquest;Cu&aacute;l es el motivo de la reparaci&oacute;n?" width="1366"/>
-                <img src="fb136c4acd925bd116e47ac42c3b6e794d4ced1fd57fbd9c6c4ab80b3eb4d386.png" title=" jhon clicks on &iquest;Cu&aacute;l es el motivo de la reparaci&oacute;n? Lista" width="1366"/>
+                <img src="6e064077fae1a8a288fd82798a10dd6ec8f49656377212b1224f0304e5698645.png" title=" jhon clicks on Buscar la direcci&oacute;n" width="1366"/>
+                <img src="3eaf969a35665e998558ab8906d487620fa7dcdcbf74da03cb64f1bfd86aaa18.png" title=" jhon enters 'Norte' into Datos adicionales" width="1366"/>
+                <img src="60ffd4c92a5255706ac01a9a472bc5a5bc6844df9c6bc727f7536fe09bdcadef.png" title=" jhon clicks on Continuar ubicaci&oacute;n servicio" width="1366"/>
+                <img src="48c1773ac407e3abf0d1aff4b9d74f8b3ef97a168e7a413693862bd00061e083.png" title=" jhon enters 'Garantia' into &iquest;Qu&eacute; tipo de servicio solicitas?" width="1366"/>
+                <img src="17ef36ae4c2de805cef87b188a830386946109827e8f6fec3376e2f011398115.png" title=" jhon clicks on &iquest;Qu&eacute; tipo de servicio solicitas? Lista" width="1366"/>
+                <img src="1c8a4d966a010aff15a5d23a7c0552b1c2ea876ed64ea7e154a9d201a51df00b.png" title=" jhon enters 'NEVERA 5.3 PIES ALMENDRA' into &iquest;Cu&aacute;l es el producto?" width="1366"/>
+                <img src="2bd4c206ac0c82067a42dec123f9b261ec9bb6e0dbd8c074465692e67ce159ae.png" title=" jhon clicks on &iquest;Cu&aacute;l es el producto? Lista" width="1366"/>
+                <img src="13fc466f51e9b47778718800c2d68dcd83453dcfda40c71da631bbd3e578cc9f.png" title=" jhon enters 'BOTA AGUA' into &iquest;Cu&aacute;l es el motivo de la reparaci&oacute;n?" width="1366"/>
+                <img src="cd3f8687ba7fdf547ec4eb599ebac3c2d2e5f5ed21430c598d9d7641cd254682.png" title=" jhon clicks on &iquest;Cu&aacute;l es el motivo de la reparaci&oacute;n? Lista" width="1366"/>
                 <img src="2e6cb1bffb09b4b948f7e3ba2c8ca6c53f70d4c3735afa20d56ccf33687d837f.png" title=" jhon enters 'QA AUTOMOTION1' into observaciones" width="1366"/>
                 <img src="e834073f829c7089f4d9adccb87e389e62788d74c97151b6f8953740c100e864.png" title=" jhon clicks on Rango AM" width="1366"/>
-                <img src="3bd1ca9f7babccf7c0680c33db82538791986866a228e14c164185fb26483b3a.png" title=" jhon enters '1731067328' into Rango PM" width="1366"/>
-                <img src="318d819b9dd4d0de1dba098775f4d88a251ddff9f12c19ec88806703bed77724.png" title=" jhon clicks on Fecha" width="1366"/>
-                <img src="db84d00c1cbafd44f6d42d4e19182437f8ec34cd639b5e7a8bfd762199216132.png" title=" jhon clicks on Confirmar Fecha seleccionada" width="1366"/>
-                <img src="26c823b901c7c48bd6af61abe455325d854f9d38e342f37e57cc497ac0e67be1.png" title=" jhon clicks on Programar" width="1366"/>
-                <img src="13bacc4f30306471733a6fc14cb9decc288d376151b860542a683bafdc912d47.png" title=" Then ver orden servicio should be a value equal to 'Tu servicio ha sido programado'" width="1366"/>
-                <img src="11fb109fcb737e23e561ec2467de844d496cc932632ebd18462dff6d8b5ea2a4.png" title=" jhon clicks on Finalizar Orden de servicio" width="1366"/>
+                <img src="9845197a33d5ae96ac621fdb46a9548b50598ac62a354d0ef9684d60f2ca1637.png" title=" jhon enters '756180411' into Rango PM" width="1366"/>
+                <img src="7fa6585bdcc15bc5803a0abf77c3bd3a055a940b8e674fe48e6c1240bc25b033.png" title=" jhon clicks on Fecha" width="1366"/>
+                <img src="bee79b26f177dbf6dbdf56161ee88545b10874546f3f01eb535f1bfa4e468047.png" title=" jhon clicks on Confirmar Fecha seleccionada" width="1366"/>
+                <img src="eb5d940a37b1604f82df8d56fac70482d9939527d1a935ed4e2021b241f9c9e0.png" title=" jhon clicks on Programar" width="1366"/>
+                <img src="18eabf04fa9e04032957f1e6c88ee0b194faf729e694dc0bf551c573df9b8a6e.png" title=" Then ver orden servicio should be a value equal to 'Tu servicio ha sido programado'" width="1366"/>
+                <img src="7d2310f08526644b9ff98d3013ab803fe04693edce1eb1c49fd1f22ffb4c3315.png" title=" jhon clicks on Finalizar Orden de servicio" width="1366"/>
                 <img src="8efb5a94563558bbc8b400ad9ec84b30908fbd972d756bd3027057f5cd20ab22.png" title=" Jhon autogestion (completed)" width="1366"/>
                 <img src="8efb5a94563558bbc8b400ad9ec84b30908fbd972d756bd3027057f5cd20ab22.png" title=" Cuando Crea la orden de servicio (completed)" width="1366"/>
                 <img src="8efb5a94563558bbc8b400ad9ec84b30908fbd972d756bd3027057f5cd20ab22.png" title=" Entonces verifica que se creo correctamente la orden de servicio: <span class='success-color'>SUCCESS</span>" width="1366"/>
@@ -248,7 +270,7 @@
 </div>
 <div id="beforefooter"></div>
 <div id="bottomfooter">
-    <span class="version">Serenity BDD version 2.0.90</span>
+    <span class="version">Serenity BDD version 2.1.2</span>
 </div>
 </body>
 </html>

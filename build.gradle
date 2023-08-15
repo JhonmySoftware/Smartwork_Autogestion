@@ -9,17 +9,18 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
+
 buildscript {
     repositories {
-
         mavenCentral()
     }
     dependencies {
         classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.89")
     }
 }
-ext{
-    serenityVersion = '2.0.90'
+
+ext {
+    serenityVersion = '2.1.2' // Actualiza a la versión más reciente
     serenityCucumberVersion = '1.9.49'
 }
 
@@ -35,12 +36,16 @@ dependencies {
     implementation "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
     implementation group: 'org.apache.poi', name: 'poi', version: '3.17'
     implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
-
 }
+
 gradle.startParameter.continueOnFailure = true
 
 // Este fragmento me permite realizar la ejecución del gradle con UT8
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+}
+
+test {
+    systemProperty 'illegal-access', 'warn'
 }
