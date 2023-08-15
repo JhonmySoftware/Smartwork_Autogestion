@@ -15,8 +15,8 @@ pipeline {
         stage('Run Test') {
             steps {
                 script {
-                    // Ejecuta el comando Gradle utilizando la herramienta configurada
-                    bat "gradle clean test aggregate"
+                    // Utiliza la ruta completa de Gradle aquí
+                    bat '"C:\\Gradle\\gradle-8.0.2\\bin\\gradle.bat" clean test aggregate'
                     echo 'Test Ejecutados Exitosamente'
                 }
             }
