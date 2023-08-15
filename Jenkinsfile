@@ -30,8 +30,8 @@ pipeline {
                         keepAll: true,
                         reportDir: "${WORKSPACE}\\serenity_${timestamp}",
                         reportFiles: 'index.html',
-                        reportName: 'Reporte Modulo de autogestión',
-                        reportTitles: 'Modulo de Autogestión'
+                        reportName: 'Reporte Modulo de autogestion',
+                        reportTitles: 'Modulo de Autogestion'
                     ])
                     echo 'Reporte Html realizado con exito'
                 }
