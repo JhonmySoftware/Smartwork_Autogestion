@@ -37,19 +37,9 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    //Nombre del servidor con el que esta configurado en las Global Tools Jenkins
-                    scannerHome = tool 'SonarQubeScanner'
-                }
-                //Nombre del servidor con el que esta configurado en la configuracion del sistema Jenkins
-                withSonarQubeEnv('SonarQube') {
-                    bat 'sonar-scanner'
-                }
-            }
-        }
     }
 }
+
+
 
 

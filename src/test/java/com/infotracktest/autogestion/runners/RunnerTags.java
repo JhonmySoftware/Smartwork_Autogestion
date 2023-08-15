@@ -15,5 +15,5 @@ import org.junit.runner.RunWith;
 
 public class RunnerTags {
     // gradle clean test aggregate -Dtags=@Requerimiento01
-    // Gradle 7.5.1
+    // Gradle 8.0.2
 }
