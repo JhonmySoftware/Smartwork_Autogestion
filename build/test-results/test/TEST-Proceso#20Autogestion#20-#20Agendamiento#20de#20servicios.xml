@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Proceso Autogestion - Agendamiento de servicios" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-15T20:00:45" hostname="LTBG60836" time="65.739">
+<testsuite name="Proceso Autogestion - Agendamiento de servicios" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-15T20:13:45" hostname="LTBG60836" time="76.884">
   <properties/>
-  <testcase name="Proceso Autogestion - Agendamiento de servicios" classname="Proceso Autogestion - Agendamiento de servicios" time="65.739"/>
-  <system-out><![CDATA[El número random generado es: 756180411
+  <testcase name="Proceso Autogestion - Agendamiento de servicios" classname="Proceso Autogestion - Agendamiento de servicios" time="76.884"/>
+  <system-out><![CDATA[El número random generado es: 2027669011
 ]]></system-out>
-  <system-err><![CDATA[ago 15, 2023 3:00:46 PM org.openqa.selenium.remote.DesiredCapabilities chrome
+  <system-err><![CDATA[ago 15, 2023 3:13:47 PM org.openqa.selenium.remote.DesiredCapabilities chrome
 INFORMACIÓN: Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
 [Test worker] INFO net.serenitybdd.core.webdriver.driverproviders.ProvideNewDriver - Instantiating driver
 [Test worker] INFO net.serenitybdd.core.webdriver.driverproviders.ProvideNewDriver - Driver capabilities: Capabilities {acceptInsecureCerts: false, acceptSslCerts: true, browserName: chrome, chrome.switches: --disable-extensions,--star..., goog:chromeOptions: {args: [--disable-extensions, --start-maximized, --test-type, --user-agent=New User Agent], extensions: [], prefs: {pdfjs.disabled: true, profile_default_content_settings.popups: 0}}, handlesAlerts: true, loggingPrefs: org.openqa.selenium.logging..., platform: ANY, version: }
-Starting ChromeDriver 114.0.5735.90 (386bc09e8f4f2e025eddae123f36f6263096ae49-refs/branch-heads/5735@{#1052}) on port 46520
+Starting ChromeDriver 114.0.5735.90 (386bc09e8f4f2e025eddae123f36f6263096ae49-refs/branch-heads/5735@{#1052}) on port 31557
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
 ChromeDriver was started successfully.
-[1692129650.405][WARNING]: This version of ChromeDriver has not been tested with Chrome version 115.
-ago 15, 2023 3:00:50 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+[1692130434.412][WARNING]: This version of ChromeDriver has not been tested with Chrome version 115.
+ago 15, 2023 3:13:54 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFORMACIÓN: Detected dialect: W3C
-Starting ChromeDriver 114.0.5735.90 (386bc09e8f4f2e025eddae123f36f6263096ae49-refs/branch-heads/5735@{#1052}) on port 17672
+Starting ChromeDriver 114.0.5735.90 (386bc09e8f4f2e025eddae123f36f6263096ae49-refs/branch-heads/5735@{#1052}) on port 28872
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
 ChromeDriver was started successfully.
-[1692129709.556][WARNING]: This version of ChromeDriver has not been tested with Chrome version 115.
-ago 15, 2023 3:01:49 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+[1692130500.868][WARNING]: This version of ChromeDriver has not been tested with Chrome version 115.
+ago 15, 2023 3:15:00 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFORMACIÓN: Detected dialect: W3C
 [Test worker] INFO net.thucydides.core.steps.ConsoleLoggingListener - 
         __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  

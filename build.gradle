@@ -49,3 +49,4 @@ tasks.withType(JavaCompile).configureEach {
 test {
     systemProperty 'illegal-access', 'warn'
 }
+
