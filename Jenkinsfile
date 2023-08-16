@@ -21,24 +21,29 @@ pipeline {
         stage('Generate Reports') {
             steps {
                 script {
-                    bat "rename \"${WORKSPACE}\\target\" serenity_${timestamp}"
-                    echo 'Backup de evidencias realizado con exito'
+                    def reportDir = "${WORKSPACE}/serenity_${timestamp}"
 
+                    // Renombrar el directorio de informes
+                    bat "rename \"${WORKSPACE}\\target\" ${reportDir}"
+                    echo 'Backup de evidencias realizado con éxito'
+
+                    // Publicar los informes HTML
                     publishHTML([
                         allowMissing: false,
                         alwaysLinkToLastBuild: true,
                         keepAll: true,
-                        reportDir: "${WORKSPACE}\\serenity_${timestamp}",
+                        reportDir: "${reportDir}",
                         reportFiles: 'index.html',
-                        reportName: 'Reporte Modulo de autogestion',
+                        reportName: 'Reporte Modulo de Autogestion',
                         reportTitles: 'Modulo de Autogestion'
                     ])
-                    echo 'Reporte Html realizado con exito'
+                    echo 'Reporte HTML realizado con éxito'
                 }
             }
         }
     }
 }
+
 
 
 
