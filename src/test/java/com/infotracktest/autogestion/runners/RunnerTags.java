@@ -10,9 +10,9 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features"
         , snippets = SnippetType.CAMELCASE
-        , tags = "@Requerimiento01"
+        , tags = "@CP001_Creacion_OrdenServicio"
         , glue = "com.infotracktest.autogestion.definition")
 
 public class RunnerTags {
-    // gradle clean test aggregate -Dtags=@Requerimiento01
+    // gradle clean test aggregate -Dtags=@CP001_Creacion_OrdenServicio
 }

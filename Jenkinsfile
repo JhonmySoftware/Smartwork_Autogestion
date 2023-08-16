@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     // Utiliza la ruta completa de Gradle aquí, y utiliza "bat" para ejecutar comandos de Windows
-                    bat 'C:\\Gradle\\gradle-8.2.1\\bin\\gradle.bat clean test aggregate'
+                    bat 'C:\\Gradle\\gradle-8.2.1\\bin\\gradle.bat clean test aggregate --warning-mode all'
                     echo 'Test Ejecutados Exitosamente'
                 }
             }
