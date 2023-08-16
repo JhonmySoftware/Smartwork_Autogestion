@@ -1,10 +1,10 @@
 #Autor: Jhon Quiñones Arboleda
 #language: es
 
-@Requerimiento01
+@CP001_Creacion_OrdenServicio
 Característica:  Proceso Autogestion - Agendamiento de servicios
 
-  @Caso01
+  @Creacion_OrdenServicio
   Escenario: Proceso Autogestion - Agendamiento de servicios
     Dado el usuario final cuando desee crear o agendar una orden de servicio
     Cuando Crea la orden de servicio

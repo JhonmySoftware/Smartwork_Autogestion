@@ -37,6 +37,7 @@ dependencies {
     implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
 
 }
+
 gradle.startParameter.continueOnFailure = true
 
 // Este fragmento me permite realizar la ejecución del gradle con UT8
@@ -47,6 +48,5 @@ tasks.withType(JavaCompile).configureEach {
 
 test {
     systemProperty 'illegal-access', 'warn'
-
 }
 

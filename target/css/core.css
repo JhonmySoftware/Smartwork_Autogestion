@@ -63,7 +63,8 @@ body {
 {
 
     min-width:1024px;
-    margin:0 1em;
+    max-width:1024px;
+    margin:0 auto;
     width: auto !important; /*IE6 hack*/
     width:1024px;
 
@@ -118,7 +119,8 @@ footer {
 #topbanner
 {
     min-width:1024px;
-    margin:0 1em;
+    max-width:1024px;
+    margin:0 auto;
     width: auto !important; /*IE6 hack*/
     width:1024px; /*IE6 hack*/
     /*border: 1px solid #FF0000;*/
@@ -529,8 +531,8 @@ i.tag {
     margin-right: 5px;
 }
 
-.error-message-cell .table{
-    width: 99%;
+.error-message-cell {
+    max-width: 755px;
 }
 .error-message {
     font-family:euphemia, verdana, sans-serif; font-size:12px; color:#CC0033; text-align:left; width:100%;
@@ -973,7 +975,6 @@ font-family:euphemia, verdana, sans-serif; font-size:16px; color: #88a717; font-
 .overview {
     border: 0px;
     padding-top: 10px;
-    width: 100%;
     min-height: 650px;
     min-width: 1000px;
 }
@@ -995,6 +996,7 @@ a.tagLink:visited, a.tagLink:link {
 }
 .story-title
 {
+    width:1008px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -1019,7 +1021,7 @@ a.tagLink:visited, a.tagLink:link {
 
 .step-table
 {
-    width:100%;
+    width:95%;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -1029,12 +1031,7 @@ a.tagLink:visited, a.tagLink:link {
     border-color: #e7e8e3;
     border-style: solid;
     table-layout: fixed;
-}
 
-.step-table-nested
-{
-    width:100%;
-    table-layout: fixed;
 }
 
 .test-case-caption {
@@ -1049,9 +1046,12 @@ a.tagLink:visited, a.tagLink:link {
 .outcome-icon {
     float: left;
 }
+.step-description-wide-column {
+    width: 730px;
+}
 
 .step-description-column {
-    width: 100%;
+    width: 650px;
 }
 
 .step-table th {
@@ -1059,7 +1059,7 @@ a.tagLink:visited, a.tagLink:link {
 }
 
 .step-table td {
-    padding: 5px 0px;
+    padding: 5px;
 }
 
 td.step-icon {
@@ -1068,7 +1068,7 @@ td.step-icon {
 
 .step-description {
     overflow: auto;
-    margin-right: 1em;
+    max-width: 700px;
 }
 
 .step-table-separator td {
@@ -1102,6 +1102,7 @@ td.step-icon {
 
 #results-dashboard
 {
+    width:1025px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -1503,6 +1504,7 @@ table.coverage_data td {
     color:#0d78ae;
     font-family:euphemia, verdana, sans-serif;
     font-size:14px;
+    width: 1008px;
     min-width: 1008px;
 }
 
@@ -2092,24 +2094,22 @@ div.scenario-text:empty {
 }
 
 .stacktrace-details {
-    width: 99%;
+    width: 100%;
     margin-left: 0px !important;
     background-color: bisque;
     font-family: monospace;
 }
 
 .rest-query-details {
-    width: 99%;
+    width: 100%;
     margin-left: 0px !important;
     background-color: #EEEEE0;
     font-family: monospace;
 }
 
 .details-button  {
-    float: right;
     margin-top: 4px !important;
     margin-bottom: 4px !important;
-    margin-right: 5px; !important;
     font-size: 1em;
     background-color: rgba(238,0,0,0.3);
 }
@@ -2147,6 +2147,7 @@ td.indented-error-category i {
 
 .example-table table {
     min-width: 80%;
+    max-width: 80%;
 }
 .example-table table th {
     padding: 4px;
@@ -2170,7 +2171,7 @@ td.indented-error-category i {
 
 .test-report table {
     border: 0.75px solid dimgrey;
-    min-width: 80%;
+    min-width: 98%;
 }
 .test-report th {
     font-weight: bold;
@@ -2215,9 +2216,6 @@ td.indented-error-category i {
     color: grey;
 }
 
-.example-table-in-scenario .row {
-    margin-right: 15px;
-}
 
 
 .example-table-in-summary th:last-child {
@@ -2234,10 +2232,6 @@ td.indented-error-category i {
 
 .example-table-in-summary {
     padding-bottom: 0px;
-}
-
-.example-table-in-summary .row {
-    margin-right: 15px;
 }
 
 .example-table-in-scenario th:last-child {

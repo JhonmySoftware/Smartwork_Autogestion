@@ -33,7 +33,7 @@ pipeline {
                         alwaysLinkToLastBuild: true,
                         keepAll: true,
                         reportDir: "${WORKSPACE}\\serenity_${timestamp}",
-                        reportFiles: 'index.html',
+                        reportFiles: 'target/index.html',
                         reportName: 'Reporte Modulo de autogestion',
                         reportTitles: 'Modulo de Autogestion'
                     ])
