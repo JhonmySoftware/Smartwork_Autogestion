@@ -23,7 +23,11 @@ pipeline {
                 script {
                     bat "rename \"${WORKSPACE}\\target\" serenity_${timestamp}"
                     echo 'Backup de evidencias realizado con exito'
-
+                }
+            }
+            post {
+                always {
+                    // Utilizar el plugin HTML Publisher para publicar los informes HTML
                     publishHTML([
                         allowMissing: false,
                         alwaysLinkToLastBuild: true,
@@ -39,6 +43,8 @@ pipeline {
         }
     }
 }
+
+
 
 
 
