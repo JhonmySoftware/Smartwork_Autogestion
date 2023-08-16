@@ -10,6 +10,7 @@ import com.infotracktest.autogestion.userinterfaces.ObjectdatosServicio;
 import com.infotracktest.autogestion.userinterfaces.ObjectubicacionServicio;
 import com.infotracktest.autogestion.utlis.DatosRandom;
 import com.infotracktest.autogestion.utlis.ExcelReader;
+import com.infotracktest.autogestion.utlis.SeleccionarNevegador;
 import net.serenitybdd.screenplay.*;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
@@ -21,6 +22,8 @@ import net.serenitybdd.screenplay.waits.Wait;
 import org.hamcrest.Matchers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.IOException;
 import java.util.List;
@@ -262,8 +265,31 @@ public class Autogestion implements Task {
         /**
          * Una vez finalice de crear los casos del archico cierro la ventana del navegador
          * */
-        WebDriver driver = new ChromeDriver(); // Inicializar el WebDriver con el navegador deseado
-        driver.quit(); // Cerrar el navegador y liberar recursos
+
+        try {
+            SeleccionarNevegador.SeleccionarNevegador();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        String browserType = SeleccionarNevegador.properties.getProperty("webdriver.driver"); // Puedes cambiar esto al navegador deseado
+        WebDriver driver = null;
+
+        // Inicializar el WebDriver con el navegador deseado
+        if ("chrome".equalsIgnoreCase(browserType)) {
+            driver = new ChromeDriver();
+        } else if ("edge".equalsIgnoreCase(browserType)) {
+            driver = new EdgeDriver();
+        } else if ("firefox".equalsIgnoreCase(browserType)) {
+            driver = new FirefoxDriver();
+        } // Agrega más condiciones para otros navegadores si es necesario
+
+        // Realiza acciones con el navegador
+
+        // Cerrar la ventana del navegador y liberar recursos
+        if (driver != null) {
+            driver.quit();
+        }
 
 
 

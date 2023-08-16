@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Proceso Autogestion - Agendamiento de servicios" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-16T13:25:15" hostname="LTBG60836" time="63.215">
+<testsuite name="Proceso Autogestion - Agendamiento de servicios" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-16T16:43:28" hostname="LTBG60836" time="109.606">
   <properties/>
-  <testcase name="Proceso Autogestion - Agendamiento de servicios" classname="Proceso Autogestion - Agendamiento de servicios" time="63.215"/>
-  <system-out><![CDATA[El número random generado es: 312016628
+  <testcase name="Proceso Autogestion - Agendamiento de servicios" classname="Proceso Autogestion - Agendamiento de servicios" time="109.606"/>
+  <system-out><![CDATA[El número random generado es: 483542941
 ]]></system-out>
-  <system-err><![CDATA[ago 16, 2023 8:25:16 AM org.openqa.selenium.remote.DesiredCapabilities chrome
-INFORMACIÓN: Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+  <system-err><![CDATA[ago 16, 2023 11:43:29 AM org.openqa.selenium.remote.DesiredCapabilities edge
+INFORMACIÓN: Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
 [Test worker] INFO net.serenitybdd.core.webdriver.driverproviders.ProvideNewDriver - Instantiating driver
-[Test worker] INFO net.serenitybdd.core.webdriver.driverproviders.ProvideNewDriver - Driver capabilities: Capabilities {acceptInsecureCerts: false, acceptSslCerts: true, browserName: chrome, chrome.switches: --disable-extensions,--star..., goog:chromeOptions: {args: [--disable-extensions, --start-maximized, --test-type, --user-agent=New User Agent], extensions: [], prefs: {pdfjs.disabled: true, profile_default_content_settings.popups: 0}}, handlesAlerts: true, loggingPrefs: org.openqa.selenium.logging..., platform: ANY, version: }
-Starting ChromeDriver 114.0.5735.90 (386bc09e8f4f2e025eddae123f36f6263096ae49-refs/branch-heads/5735@{#1052}) on port 46646
+[Test worker] INFO net.serenitybdd.core.webdriver.driverproviders.ProvideNewDriver - Driver capabilities: Capabilities {browserName: MicrosoftEdge, loggingPrefs: org.openqa.selenium.logging..., platform: WINDOWS, version: }
+Starting Microsoft Edge WebDriver 115.0.1901.203 (a5a2b1779bcfe71f081bc9104cca968d420a89ac) on port 44822
+To submit feedback, report a bug, or suggest new features, please visit https://github.com/MicrosoftEdge/EdgeWebDriver
+
 Only local connections are allowed.
-Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
-ChromeDriver was started successfully.
-[1692192321.280][WARNING]: This version of ChromeDriver has not been tested with Chrome version 115.
-ago 16, 2023 8:25:21 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+Please see https://aka.ms/WebDriverSecurity for suggestions on keeping Microsoft Edge WebDriver safe.
+
+Microsoft Edge WebDriver was started successfully.
+ago 16, 2023 11:43:35 AM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFORMACIÓN: Detected dialect: W3C
-Starting ChromeDriver 114.0.5735.90 (386bc09e8f4f2e025eddae123f36f6263096ae49-refs/branch-heads/5735@{#1052}) on port 2116
+Starting Microsoft Edge WebDriver 115.0.1901.203 (a5a2b1779bcfe71f081bc9104cca968d420a89ac) on port 6351
+To submit feedback, report a bug, or suggest new features, please visit https://github.com/MicrosoftEdge/EdgeWebDriver
+
 Only local connections are allowed.
-Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
-ChromeDriver was started successfully.
-[1692192377.743][WARNING]: This version of ChromeDriver has not been tested with Chrome version 115.
-ago 16, 2023 8:26:17 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+Please see https://aka.ms/WebDriverSecurity for suggestions on keeping Microsoft Edge WebDriver safe.
+
+Microsoft Edge WebDriver was started successfully.
+ago 16, 2023 11:45:15 AM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFORMACIÓN: Detected dialect: W3C
+ago 16, 2023 11:45:17 AM org.openqa.selenium.os.OsProcess destroy
+GRAVE: Unable to kill process java.lang.ProcessImpl@29dcdd1c
 [Test worker] INFO net.thucydides.core.steps.ConsoleLoggingListener - 
         __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
   _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 

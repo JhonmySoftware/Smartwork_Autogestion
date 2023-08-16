@@ -5,11 +5,10 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Open;
+import net.thucydides.core.webdriver.WebDriverFacade;
+import org.openqa.selenium.WebDriver;
 
-import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.Task;
-import net.serenitybdd.screenplay.Tasks;
-import net.serenitybdd.screenplay.actions.Open;
+import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
 public class AbrirPagina implements Task {
 
@@ -21,9 +20,16 @@ public class AbrirPagina implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
+
         System.setProperty("webdriver.edge.driver", "src/test/resources/driver/msedgedriver.exe");
 
+        // Open the browser and maximize the window
         actor.attemptsTo(Open.browserOn(objectAbrirPagina));
+
+        // Maximize the browser window
+        WebDriverFacade webDriverFacade = (WebDriverFacade) getDriver();
+        WebDriver originalDriver = webDriverFacade.getProxiedDriver();
+        originalDriver.manage().window().maximize();
 
         try {
             Thread.sleep(3000);
@@ -32,4 +38,5 @@ public class AbrirPagina implements Task {
         }
     }
 }
+
 
