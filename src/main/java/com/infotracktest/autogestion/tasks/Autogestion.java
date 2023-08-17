@@ -16,6 +16,7 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.actors.OnStage;
+import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.questions.WebElementQuestion;
 import net.serenitybdd.screenplay.waits.Wait;
@@ -134,15 +135,12 @@ public class Autogestion implements Task {
              * del sitio web.
              * */
             try {
-                Thread.sleep(3000);
+                Thread.sleep(6000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
-            actor.attemptsTo(Wait.until(
-                            WebElementQuestion.the(ObjectAutogestion.checkedG),
-                            WebElementStateMatchers.isPresent()
-                    ).forNoLongerThan(60).seconds(),
+            actor.attemptsTo(
                     Click.on(ObjectAutogestion.checkedG),
                     Click.on(ObjectAutogestion.TipoDocumento),
                     SeleccionarTipoDocumento.conValor(formulario.getTipoDocumentos()),
@@ -253,6 +251,16 @@ public class Autogestion implements Task {
              * Validar que la creación del servicio se realice correctamente.
              * */
 
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            actor.attemptsTo(Wait.until(
+                    WebElementQuestion.the(ObjectdatosServicio.VerOrdenServicio),
+                    WebElementStateMatchers.isVisible()
+            ).forNoLongerThan(60).seconds());
             OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
                     Matchers.comparesEqualTo("Tu servicio ha sido programado")));
 
