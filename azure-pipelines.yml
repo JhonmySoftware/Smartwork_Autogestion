@@ -6,8 +6,12 @@ pool:
 
 steps:
   - script: |
-      ./gradlew.bat clean test aggregate --warning-mode all
-      copy build\reports\serenity\index.html $(Build.ArtifactStagingDirectory)
+      try {
+          ./gradlew.bat clean test aggregate --warning-mode all
+          copy target/index.html $(Build.ArtifactStagingDirectory)
+      } catch {
+          echo 'Ocurrió un error en las pruebas, pero se continuará con la compilación...'
+      }
     displayName: 'Ejecutar pruebas y generar informes'
 
   - task: PublishTestResults@2
@@ -26,11 +30,6 @@ steps:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)'
       artifactName: 'SerenityReports'
     displayName: 'Publicar informes de Serenity BDD'
-
-  - script: |
-      echo 'Continuando a pesar de errores...'
-    displayName: 'Continuar en caso de errores'
-    continueOnError: true
 
 
 

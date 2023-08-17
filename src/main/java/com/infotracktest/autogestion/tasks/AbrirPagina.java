@@ -21,15 +21,21 @@ public class AbrirPagina implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        System.setProperty("webdriver.edge.driver", "src/test/resources/driver/msedgedriver.exe");
+        try {
+            System.setProperty("webdriver.edge.driver", "src/test/resources/driver/msedgedriver.exe");
 
-        // Open the browser and maximize the window
-        actor.attemptsTo(Open.browserOn(objectAbrirPagina));
+            // Open the browser and maximize the window
+            actor.attemptsTo(Open.browserOn(objectAbrirPagina));
 
-        // Maximize the browser window
-        WebDriverFacade webDriverFacade = (WebDriverFacade) getDriver();
-        WebDriver originalDriver = webDriverFacade.getProxiedDriver();
-        originalDriver.manage().window().maximize();
+            // Maximize the browser window
+            WebDriverFacade webDriverFacade = (WebDriverFacade) getDriver();
+            WebDriver originalDriver = webDriverFacade.getProxiedDriver();
+            originalDriver.manage().window().maximize();
+
+            Thread.sleep(3000);
+        } catch (Exception e) {
+            throw new RuntimeException("Error al abrir la página y maximizar la ventana del navegador", e);
+        }
 
         try {
             Thread.sleep(3000);
