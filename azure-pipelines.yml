@@ -14,12 +14,6 @@ steps:
       }
     displayName: 'Ejecutar pruebas y generar informes'
 
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFormat: 'JUnit'
-      testResultsFiles: '$(Build.ArtifactStagingDirectory)/index.html'
-    displayName: 'Publicar resultados de pruebas'
-
   - script: |
       SETLOCAL
 
@@ -46,8 +40,3 @@ steps:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)'
       artifactName: 'SerenityReports'
     displayName: 'Publicar informes de Serenity BDD'
-
-
-
-
-
