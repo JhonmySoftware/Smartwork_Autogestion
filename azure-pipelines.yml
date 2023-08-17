@@ -10,13 +10,13 @@ steps:
       copy build/reports/serenity/index.html $(Build.ArtifactStagingDirectory)
     displayName: 'Ejecutar pruebas y generar informes'
 
-  - powershell: |
-      $timestamp = Get-Date -Format "yyyyMMddHHmm"
-      Rename-Item -Path "$(Build.ArtifactStagingDirectory)\target" -NewName "serenity_$timestamp"
-    displayName: 'Renombrar carpeta de informes'
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      artifactName: 'SerenityReports'
-    displayName: 'Publicar informes de Serenity BDD'
+#  - powershell: |
+#      $timestamp = Get-Date -Format "yyyyMMddHHmm"
+#      Rename-Item -Path "$(Build.ArtifactStagingDirectory)\target" -NewName "serenity_$timestamp"
+#    displayName: 'Renombrar carpeta de informes'
+#
+#  - task: PublishBuildArtifacts@1
+#    inputs:
+#      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#      artifactName: 'SerenityReports'
+#    displayName: 'Publicar informes de Serenity BDD'
