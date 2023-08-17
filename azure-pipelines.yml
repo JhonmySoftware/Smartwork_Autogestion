@@ -6,8 +6,8 @@ pool:
 
 steps:
   - script: |
-          ./gradlew.bat clean test aggregate --warning-mode all
-          copy build/reports/serenity/index.html $(Build.ArtifactStagingDirectory)
+      ./gradlew.bat clean test aggregate --warning-mode all
+      copy build/reports/serenity/index.html $(Build.ArtifactStagingDirectory)
     displayName: 'Ejecutar pruebas y generar informes'
 
   - task: PublishTestResults@2
@@ -16,32 +16,13 @@ steps:
       testResultsFiles: '**/build/test-results/test/*.xml'
     displayName: 'Publicar resultados de pruebas'
 
-#  - script: |
-#      SETLOCAL
-#
-#      REM Obtener la fecha y hora actual en un formato que se pueda usar en un nombre de carpeta
-#      FOR /F "tokens=1-4 delims=/ " %%i IN ('date /T') DO (
-#          SET yyyy=%%l
-#          SET mm=%%j
-#          SET dd=%%k
-#      )
-#      FOR /F "tokens=1-2 delims=: " %%a IN ('time /T') DO (
-#          SET hh=%%a
-#          SET nn=%%b
-#      )
-#      SET timestamp=%yyyy%%mm%%dd%%hh%%nn%
-#
-#      REM Renombrar la carpeta de informes
-#      REN "%Build.ArtifactStagingDirectory%\target" "serenity_%timestamp%"
-#
-#      ENDLOCAL
-#    displayName: 'Renombrar carpeta de informes'
-
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      artifactName: 'SerenityReports'
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'SerenityReports'
+      publishLocation: 'Container'
     displayName: 'Publicar informes de Serenity BDD'
+
 
 
 
