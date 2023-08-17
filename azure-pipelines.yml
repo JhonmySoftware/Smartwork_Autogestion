@@ -12,7 +12,7 @@ steps:
 
   - powershell: |
       $timestamp = Get-Date -Format "yyyyMMddHHmm"
-      Rename-Item -Path "$env:Build_ArtifactStagingDirectory\target" -NewName "serenity_$timestamp"
+      Rename-Item -Path "$(Build.ArtifactStagingDirectory)\target" -NewName "serenity_$timestamp"
     displayName: 'Renombrar carpeta de informes'
 
   - task: PublishBuildArtifacts@1
