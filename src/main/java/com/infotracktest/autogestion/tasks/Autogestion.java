@@ -140,7 +140,10 @@ public class Autogestion implements Task {
                 throw new RuntimeException(e);
             }
 
-            actor.attemptsTo(
+            actor.attemptsTo(Wait.until(
+                    WebElementQuestion.the(ObjectAutogestion.checkedG),
+                    WebElementStateMatchers.isPresent()
+                    ).forNoLongerThan(60).seconds(),
                     Click.on(ObjectAutogestion.checkedG),
                     Click.on(ObjectAutogestion.TipoDocumento),
                     SeleccionarTipoDocumento.conValor(formulario.getTipoDocumentos()),
