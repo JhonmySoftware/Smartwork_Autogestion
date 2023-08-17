@@ -7,7 +7,6 @@ pool:
 steps:
   - script: |
       ./gradlew.bat clean test aggregate --warning-mode all
-      copy build/reports/serenity/index.html $(Build.ArtifactStagingDirectory)
     displayName: 'Ejecutar pruebas y generar informes'
 
   - task: PublishTestResults@2
@@ -16,12 +15,19 @@ steps:
       testResultsFiles: '**/build/test-results/test/*.xml'
     displayName: 'Publicar resultados de pruebas'
 
+  - task: CopyFiles@2
+    inputs:
+      Contents: 'target/index.html'  # Ruta a tus informes
+      TargetFolder: $(Build.ArtifactStagingDirectory)\SerenityReports\
+    displayName: 'Copiar archivo de informes a directorio de artefactos'
+
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)\SerenityReports'
       ArtifactName: 'SerenityReports'
       publishLocation: 'Container'
     displayName: 'Publicar informes de Serenity BDD'
+
 
 
 
