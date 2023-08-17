@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
-
-
+<html>
 <head>
     <meta charset="UTF-8"/>
-    <title>Features</title>
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Serenity Reports</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
@@ -62,68 +65,44 @@
 
 
 
-    <script>
 
-        $(document).ready(function () {
+    <script class="code" type="text/javascript">$(document).ready(function () {
 
-            var scenarioTable = $('.scenario-result-table').DataTable({
-
-                "order": [],
+            $('.scenario-result-table').DataTable({
+                "order": [[0, "asc",], [3, "asc",]],
+                "pageLength": 10,
                 "language": {
                     searchPlaceholder: "Filter",
                     search: ""
                 }
             });
 
-            $('.example-table table').DataTable({
+            // Results table
+            $('#test-results-table').DataTable({
+                "order": [[0, "asc",], [3, "asc",]],
+                "pageLength": 10,
+                "lengthMenu": [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]]
+            });
+
+            $('#evidence-table').DataTable({
                 searching: false,
-                ordering: false,
                 paging: false,
                 info: false
             });
 
-            $('.example-table-in-scenario table').DataTable({
+            $(".feature-coverage-table").DataTable({
                 searching: false,
-                ordering: false,
                 paging: false,
                 info: false
             });
 
-            $('#evidence-table').DataTable(
-                    {
-                        searching: false,
-                        ordering: false,
-                        paging: false,
-                        info: false
-                    }
-            );
-
-
-            $(".scenario-docs .card-body table").wrap("<div class='table-responsive'></div>");
-
-            $("#requirements-tabs").tabs();
-            $("#test-tabs").tabs();
-
-            var requirementsTree = [{"text":"Proceso Autogestion - Agendamiento de servicios","type":"feature","href":"feature_proceso_autogestion_-_agendamiento_de_servicios.html","nodes":[],"selectable":false,"tags":["","\u003cspan class\u003d\u0027feature-count\u0027\u003e1 scenario\u003c/span\u003e"]}];
-
-            $('#tree').treeview({
-                data: requirementsTree,
-                enableLinks: true,
-                showTags: true,
-                expandIcon: "glyphicon glyphicon-folder-close",
-                collapseIcon: "glyphicon glyphicon-folder-open",
-                emptyIcon: "glyphicon glyphicon-book"
-            });
-
-        });
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $(".scenario-docs > div > p").html(function () {
-                var text = $(this).text().trim().split(" ");
-                var first = text.shift();
-                return (text.length > 0 ? "<strong>" + first + "</strong> " : first) + text.join(" ");
+            $(".feature-coverage-table-with-pagination").DataTable({
+                order: [[0, "asc",]],
+                pageLength: 10,
+                language: {
+                    searchPlaceholder: "Filter",
+                    search: ""
+                }
             });
         });
     </script>
@@ -135,381 +114,398 @@
         <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
         <div id="projectname-banner" style="float:right">
             <span class="projectname">
-                <span class="projecttitle">Automatización Modulo de Autogestión</span>
+                <span class="projecttitle">Automatización SmartStock</span>
                 <span class="projectsubtitle"></span>
             </span>
         </div>
     </div>
 </div>
 
-
 <div class="middlecontent">
+
+
     <div id="contenttop">
         <div class="middlebg">
-            <span class="breadcrumbs">
-            <a href='index.html'>Home</a> > <a href="capabilities.html">Requirements</a>
-
-
-
-                > <span class="truncate-40">Proceso Autogestion - Agendamiento De Servicios</span>
-
-            </span>
+        <span class="breadcrumbs"><a href="index.html">Home</a>
+                    > Feature 
+                > <span
+                    class="truncate-60">Proceso Autogestion - Agendamiento De Servicios</span>
+        </span>
         </div>
         <div class="rightbg"></div>
     </div>
+
     <div class="clr"></div>
-
     <!--/* starts second table*/-->
-
 <div>
     <ul class="nav nav-tabs" role="tablist">
-        <li >
-            <a href="index.html"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
         </li>
         <li >
             <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
         </li>
-        <li class="active">
-            <a href="#"><i class="fa fa-comments-o"></i> Features</a>
+        <li >
+            <a href="requirement_type_feature.html"><i class="fa fa-comments-o"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 16-08-2023 18:32</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 17-08-2023 11:15</span>
     <br style="clear:left"/>
 </div>
-
     <div class="clr"></div>
-
     <div id="beforetable"></div>
     <div id="results-dashboard">
-        <div class="table">
-                <div class=row">
-                    <div class="col-sm-12">
-                        <div>
-                            <div clas="table">
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                    <span>
-                                            <h2><i class="fa fa-book"></i> Feature:  Proceso Autogestion - Agendamiento De Servicios</h2>
-                                        </span>
-                                </div>
-                                    <div class="col-sm-4">
-                                        <span class="feature-tags">
-                                                <p class="tag">
-                                                    <span class="badge tag-badge" style="background:default;">
-                                                        <i class="fa fa-tag"></i>&nbsp;<a class="tagLink"
-                                                                                          style="background:default;"
-                                                                                          href="tag_cp001_creacion_ordenservicio.html">Cp001 Creacion Ordenservicio
-                                                        (tag)</a>
-                                                    </span>
-                                                </p>
-                                                <p class="tag">
-                                                    <span class="badge tag-badge" style="background:default;">
-                                                        <i class="fa fa-tag"></i>&nbsp;<a class="tagLink"
-                                                                                          style="background:default;"
-                                                                                          href="tag_creacion_ordenservicio.html">Creacion Ordenservicio
-                                                        (tag)</a>
-                                                    </span>
-                                                </p>
-                                        </span>
-                                    </div>
-                                </div>
+        <div class="middlb">
+            <div class="table">
+
+                <h2><i class='fa fa-tags'></i> Feature: Proceso Autogestion - Agendamiento De Servicios</h2>
+                <table class='overview'>
+                    <tr>
+                        <td width="375px" valign="top">
+                            <div class="test-count-summary">
+                                <div class="test-count-title">
+                                    1 test scenarios 
+                                     |
+                                        <a href="feature_proceso_autogestion_-_agendamiento_de_servicios.csv" title="Download CSV"> <i class="fa fa-download"
+                                                                                        title="Download CSV"></i></a>
+
+
                                 </div>
                             </div>
-                            <div class="requirementNarrativeTitle">
-                                
-                            </div>
 
-                        </div>
-                    </div>
-
-
-            <div class="row">
-                <div class="col-sm-12">
-
-                    <!-- Requirements result tabs -->
-                    <ul class="nav nav-tabs">
-                        <li class="active">
-                            <a data-toggle="tab" href="#specs"><i class="fas fa-comments"></i> Specifications</a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#results"><i class="fas fa-tachometer-alt"></i> Test Results</a>
-                        </li>
-                    </ul>
-
-                    <!-- Specifications and Results tabs -->
-                    <div class="card border">
-                        <div class="tab-content" id="pills-tabContent">
-                            <div id="specs" class="tab-pane fade in active">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-sm-12">
+                            <div>
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#summary"><i class="fas fa-home"></i> Summary</a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#tests"><i class="fas fa-tachometer-alt"></i> Test
+                                            Results</a>
+                                    </li>
+                                </ul>
 
 
-                                            <h3>Scenarios</h3>
+                                <div class="card border">
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div id="summary" class="tab-pane fade in active">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                            <div style="width:300px;"
+                                                                 class="chart-container automated-and-manual-results">
+                                                                <div class="ct-chart ct-square"></div>
+                                                            </div>
+                                                            <script>
 
-                                            <div id="toc">
-                                                <table class="table" id="toc-table">
-                                                        <tr>
-                                                            <td style="width:95%;" class="toc-title">
-                                                                <a href="#d535adf67292d505f7be1aecece156d08ad489f214741d36477983630469ac82" title="View scenario details" >Proceso autogestion - agendamiento de servicios</a>
+                                                                var labels = ['100%', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
+                                                                // Our series array that contains series objects or in this case series data arrays
+
+                                                                var series = [{meta: 'Passing tests (automated)', value: 1}, {meta: 'Passing tests (manual)', value: 0}, {meta: 'Pending tests (automated)', value: 0}, {meta: 'Pending tests (manual)', value: 0}, {meta: 'Ignored tests (automated)', value: 0}, {meta: 'Ignored tests (manual)', value: 0}, {meta: 'Skipped tests (automated)', value: 0}, {meta: 'Skipped tests (manual)', value: 0}, {meta: 'Failing tests (automated)', value: 0}, {meta: 'Failing tests (manual)', value: 0}, {meta: 'Broken tests (automated)', value: 0}, {meta: 'Broken tests (manual)', value: 0}, {meta: 'Compromised tests (automated)', value: 0}, {meta: 'Compromised tests (manual)', value: 0}];
+
+                                                                // As options we currently only set a static size of 300x200 px. We can also omit this and use aspect ratio containers
+                                                                // as you saw in the previous example
+                                                                var options = {
+                                                                    width: 350,
+                                                                    height: 300
+                                                                };
 
 
-                                                            </td>
-                                                            <td style="width:5%;">
-                                                                <table>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <a style="margin-left:0.5em;padding-right: 1.5em;"
-                                                                               href="proceso_autogestion___agendamiento_de_servicios_proceso_autogestion___agendamiento_de_servicios.html"
-                                                                               title="View test results">
-                                                                            <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
-                                                                            </a>
+                                                                new Chartist.Pie('.ct-chart', {
+                                                                    series: series,
+                                                                    labels: labels
+                                                                }, {
+                                                                    plugins: [Chartist.plugins.tooltip()],
+                                                                    donut: true,
+                                                                    donutWidth: 60,
+                                                                    donutSolid: true,
+                                                                    startAngle: 270,
+                                                                    showLabel: true
+                                                                }, options);
 
-                                                                        
+
+                                                                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                                                                    new Chartist.Pie('.ct-chart', {
+                                                                        series: series,
+                                                                        labels: labels
+                                                                    }, {
+                                                                        plugins: [Chartist.plugins.tooltip()],
+                                                                        donut: true,
+                                                                        donutWidth: 60,
+                                                                        donutSolid: true,
+                                                                        startAngle: 270,
+                                                                        showLabel: true
+                                                                    }, options);
+                                                                });
+
+
+                                                            </script>
+                                                    </div>
+                                                    <div class="col-sm-8">
+
+                                                        <table class="table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th scope="col">Scenario Results (including rows of test
+                                                                    data)
+                                                                </th>
+                                                                <th scope="col" colspan="2" class="automated-stats">
+                                                                    Automated
+                                                                </th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count">
+                                                                        <a href="context_feature_cl_proceso_autogestion_-_agendamiento_de_servicios_result_success.html"><i
+                                                                                    class='fa fa-check-circle-o success-icon'></i>&nbsp;Passing</a>
+                                                                    </td>
+                                                                <td class="automated-stats">1</td>
+                                                                <td class="automated-stats">100%</td>
+                                                            </tr>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count"><i
+                                                                                class='fa fa-stop-circle-o pending-icon'></i>&nbsp;Pending
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count"><i
+                                                                                class='fa fa-ban ignored-icon'></i>&nbsp;Ignored
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count"><i
+                                                                                class='fa fa-fast-forward skip-icon'></i>&nbsp;Skipped
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                        <td colspan="3"><i
+                                                                                    class='fa fa-times failure-icon'></i>&nbsp;<em>Unsuccessful</em></a>
                                                                         </td>
-                                                                        <td>
-                                                                            <a style="margin-left:0.5em;padding-right: 1.5em;"
-                                                                               href="proceso_autogestion___agendamiento_de_servicios_proceso_autogestion___agendamiento_de_servicios.html"
-                                                                               title="View test results">
-                                                                                <i class="fas fa-search-plus"></i>
-                                                                            </a>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                </table>
+                                                            </tr>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count indented-error-category">
+                                                                        <i
+                                                                                class='fa fa-times-circle failure-icon'></i>&nbsp;Failed
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count indented-error-category">
+                                                                        <i
+                                                                                class='fa fa-exclamation-triangle error-icon'></i>&nbsp;Broken
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count indented-error-category">
+                                                                        <i
+                                                                                class='fa fa-chain-broken compromised-icon'></i>&nbsp;Compromised
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            </tr>
+                                                            <tr class="summary-stats">
+                                                                <td class="aggregate-result-count">Total</td>
+                                                                <td class="automated-stats">1</td>
+                                                                <td class="automated-stats"></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
 
-                                            </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <table class="table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Execution Time</th>
+                                                                <th>Clock Time</th>
+                                                                <th>Fastest Test</th>
+                                                                <th>Slowest Test</th>
+                                                                <th>Average Execution Time</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td> 1m 19s</td>
+                                                                <td>79ms</td>
+                                                                <td> 1m 19s</td>
+                                                                <td> 1m 19s</td>
+                                                                <td> 1m 19s</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <h3>Functional Coverage Overview</h3>
 
-                                            <h3>Scenario details</h3>
 
-                                                <div class="scenario-docs card" id="d535adf67292d505f7be1aecece156d08ad489f214741d36477983630469ac82">
-                                                    <div class="scenario-docs card-header success" style="min-height:1.5em;">
-                                                        <div>
-                                                            <span class="scenario-heading">
-                                                                <a href="proceso_autogestion___agendamiento_de_servicios_proceso_autogestion___agendamiento_de_servicios.html" title="View test results">Proceso Autogestion - Agendamiento de servicios</a>
-                                                            </span>
-                                                            <span class="scenario-result-icon">
-                                                                
+                                                                    <h4>Features</h4>
 
-                                                                    <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
-                                                            </span>
+                                                                    <table class="table feature-coverage-table"
+                                                                           id="Feature">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th>Feature</th>
+                                                                            <th style="width:7.5em;">Scenarios</th>
+                                                                            <th style="width:7.5em;">% Pass</th>
+                                                                            <th style="width:7.5em;">Result</th>
+                                                                            <th>Coverage</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="feature_features_sl_proceso_autogestion_-_agendamiento_de_servicios.html">Proceso Autogestion - Agendamiento de servicios</a>
+                                                                                </td>
+                                                                                <td>1</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="1"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="feature_proceso_autogestion_-_agendamiento_de_servicios.html">Proceso Autogestion - Agendamiento de servicios</a>
+                                                                                </td>
+                                                                                <td>1</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="1"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
                                                         </div>
                                                     </div>
-                                                    <div class="scenario-docs card-body">
-                                                            <p>Dado el usuario final cuando desee crear o agendar una orden de servicio</p>
-                                                            <p>Cuando Crea la orden de servicio</p>
-                                                            <p>Entonces verifica que se creo correctamente la orden de servicio</p>
-                                                        <div class="examples">
+
+
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <h3>Tags</h3>
+
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <div>
+                                                                                <a href="tag_cp001_creacion_ordenservicio.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                    class="fa fa-tag"></i> Cp001 Creacion Ordenservicio&nbsp;&nbsp;&nbsp;1</span>
+                                                                                </a>
+                                                                                <a href="tag_creacion_ordenservicio.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                    class="fa fa-tag"></i> Creacion Ordenservicio&nbsp;&nbsp;&nbsp;1</span>
+                                                                                </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                         </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div id="tests" class="tab-pane fade">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h3><i class="fas fa-cogs"></i> Automated Tests</h3>
+
+                                                            <table class="scenario-result-table table"
+                                                                   id="scenario-results">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>feature</th>
+                                                                    <th class="test-name-column">Scenario</th>
+                                                                    <th>Steps</th>
+                                                                    <th>Start Time</th>
+                                                                    <th>Duration</th>
+                                                                    <th>Result</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="feature_features_sl_proceso_autogestion_-_agendamiento_de_servicios.html">Proceso Autogestion - Agendamiento de servicios</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="proceso_autogestion___agendamiento_de_servicios_proceso_autogestion___agendamiento_de_servicios.html">Proceso Autogestion - Agendamiento de servicios</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>11:13:59</td>
+                                                                        <td>01:19</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
 
                                                     </div>
                                                 </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div id="results" class="tab-pane fade">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-sm-4">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h3><i class="fas fa-edit"></i> Manual Tests</h3>
 
-                                            <div style="width:300px;" class="chart-container automated-and-manual-results">
-                                                <div class="ct-chart ct-square"></div>
-                                            </div>
-                                            <script>
+                                                            No manual tests were recorded
 
-                                                var labels = ['100%', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
-                                                // Our series array that contains series objects or in this case series data arrays
-
-                                                var series = [{meta: 'Passing tests (automated)', value: 1}, {meta: 'Passing tests (manual)', value: 0}, {meta: 'Pending tests (automated)', value: 0}, {meta: 'Pending tests (manual)', value: 0}, {meta: 'Ignored tests (automated)', value: 0}, {meta: 'Ignored tests (manual)', value: 0}, {meta: 'Skipped tests (automated)', value: 0}, {meta: 'Skipped tests (manual)', value: 0}, {meta: 'Failing tests (automated)', value: 0}, {meta: 'Failing tests (manual)', value: 0}, {meta: 'Broken tests (automated)', value: 0}, {meta: 'Broken tests (manual)', value: 0}, {meta: 'Compromised tests (automated)', value: 0}, {meta: 'Compromised tests (manual)', value: 0}];
-
-                                                // As options we currently only set a static size of 300x200 px. We can also omit this and use aspect ratio containers
-                                                // as you saw in the previous example
-                                                var options = {
-                                                    width: 350,
-                                                    height: 300
-                                                };
-
-                                                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                                                    new Chartist.Pie('.ct-chart', {
-                                                        series: series,
-                                                        labels: labels,
-                                                    }, {
-                                                        donut: true,
-                                                        donutWidth: 60,
-                                                        donutSolid: true,
-                                                        startAngle: 270,
-                                                        showLabel: true
-                                                    }, options);
-                                                });
-
-                                            </script>
-                                        </div>
-                                        <div class="col-sm-8">
-
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">Scenario Results (including rows of test data)</th>
-                                                <th scope="col" colspan="2" class="automated-stats">
-                                                    Automated
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                                    <td class="aggregate-result-count">
-                                                                        <a href="context_feature_cl_proceso_autogestion_-_agendamiento_de_servicios_result_success.html"><i
-                                                                                class='fa fa-check-circle-o success-icon'></i>&nbsp;Passing</a>
-                                                                    </td>
-                                                <td class="automated-stats">1</td>
-                                                <td class="automated-stats">100%</td>
-                                            </tr>
-                                            <tr>
-                                                                    <td class="aggregate-result-count"><i
-                                                                            class='fa fa-stop-circle-o pending-icon'></i>&nbsp;Pending
-                                                                    </td>
-                                                <td class="automated-stats">0</td>
-                                                <td class="automated-stats"> </td>
-                                            </tr>
-                                            <tr>
-                                                                <td class="aggregate-result-count"><i
-                                                                        class='fa fa-ban ignored-icon'></i>&nbsp;Ignored
-                                                                </td>
-                                                <td class="automated-stats">0</td>
-                                                <td class="automated-stats"> </td>
-                                            </tr>
-                                            <tr>
-                                                                <td class="aggregate-result-count"><i
-                                                                        class='fa fa-fast-forward skip-icon'></i>&nbsp;Skipped
-                                                                </td>
-                                                <td class="automated-stats">0</td>
-                                                <td class="automated-stats"> </td>
-                                            </tr>
-                                            <tr>
-                                                                            <td colspan="3"><i
-                                                                                class='fa fa-times failure-icon'></i>&nbsp;<em>Unsuccessful</em></a>
-                                                                            </td>
-
-                                            </tr>
-
-                                            <tr>
-                                                                <td class="aggregate-result-count indented-error-category">
-                                                                    <i
-                                                                            class='fa fa-times-circle failure-icon'></i>&nbsp;Failed
-                                                                </td>
-                                                <td class="automated-stats">0</td>
-                                                <td class="automated-stats"> </td>
-                                            <tr>
-                                                                <td class="aggregate-result-count indented-error-category">
-                                                                    <i
-                                                                            class='fa fa-exclamation-triangle error-icon'></i>&nbsp;Broken
-                                                                </td>
-                                                <td class="automated-stats">0</td>
-                                                <td class="automated-stats"> </td>
-                                            <tr>
-                                                                <td class="aggregate-result-count indented-error-category">
-                                                                    <i
-                                                                            class='fa fa-chain-broken compromised-icon'></i>&nbsp;Compromised
-                                                                </td>
-                                                <td class="automated-stats">0</td>
-                                                <td class="automated-stats"> </td>
-                                            </tr>
-                                            <tr class="summary-stats">
-                                                <td class="aggregate-result-count">Total</td>
-                                                <td class="automated-stats">1</td>
-                                                <td class="automated-stats"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    </div>
-
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <table class="table">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>Execution Time</th>
-                                                        <th>Clock Time</th>
-                                                        <th>Fastest Test</th>
-                                                        <th>Slowest Test</th>
-                                                        <th>Average Execution Time</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td> 1m 15s</td>
-                                                        <td>75ms</td>
-                                                        <td> 1m 15s</td>
-                                                        <td> 1m 15s</td>
-                                                        <td> 1m 15s</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
+                        </td>
 
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h3><i class="fas fa-cogs"></i> Automated Tests</h3>
+                    </tr>
+                </table>
 
-                                            <table class="scenario-result-table table" id="scenario-results">
-                                                <thead>
-                                                <tr>
-                                                    <th class="test-name-column">Scenario</th>
-                                                    <th>Steps</th>
-                                                    <th>Start Time</th>
-                                                    <th>Duration</th>
-                                                    <th>Result</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr class="scenario-result SUCCESS">
-                                                    <td>
-                                                            <a href="proceso_autogestion___agendamiento_de_servicios_proceso_autogestion___agendamiento_de_servicios.html">Proceso Autogestion - Agendamiento de servicios</a>
-                                                    </td>
-                                                    <td>3</td>
-                                                    <td>18:32:28</td>
-                                                    <td>01:15</td>
-                                                    <td>
-                                                            <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
-                                                                style="display:none">SUCCESS</span>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h3><i class="fas fa-edit"></i> Manual Tests</h3>
-
-                                                No manual tests were recorded
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <span class="version">Serenity BDD version 2.0.89</span>
-                    </div>
-                </div>
-            </div>
+    </div>
+</div>
+<div id="beforefooter"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <span class="version">Serenity BDD version 2.0.89</span>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

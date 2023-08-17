@@ -244,9 +244,7 @@ public class Autogestion implements Task {
                     Click.on(ObjectdatosServicio.Programar)
             );
             actor.attemptsTo(Wait.until(WebElementQuestion.the(ObjectdatosServicio.UbicionServicio),
-                            WebElementStateMatchers.isPresent()).forNoLongerThan(60).seconds(),
-                    Scroll.to(ObjectdatosServicio.UbicionServicio)
-            );
+                            WebElementStateMatchers.isPresent()).forNoLongerThan(60).seconds());
             /**
              * Validar que la creación del servicio se realice correctamente.
              * */
@@ -257,7 +255,9 @@ public class Autogestion implements Task {
                 throw new RuntimeException(e);
             }
 
-            actor.attemptsTo(Wait.until(
+            actor.attemptsTo(
+                    Scroll.to(ObjectdatosServicio.UbicionServicio),
+                    Wait.until(
                     WebElementQuestion.the(ObjectdatosServicio.VerOrdenServicio),
                     WebElementStateMatchers.isVisible()
             ).forNoLongerThan(60).seconds());
