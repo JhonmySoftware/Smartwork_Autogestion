@@ -17,7 +17,7 @@ steps:
 
   - task: CopyFiles@2
     inputs:
-      Contents: 'target/index.html'  # Ruta a tus informes
+      Contents: 'target'  # Ruta a tus informes
       TargetFolder: $(Build.ArtifactStagingDirectory)\SerenityReports\
     displayName: 'Copiar archivo de informes a directorio de artefactos'
 
