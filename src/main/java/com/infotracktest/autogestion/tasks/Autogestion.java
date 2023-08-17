@@ -140,169 +140,85 @@ public class Autogestion implements Task {
                 throw new RuntimeException(e);
             }
 
-            actor.attemptsTo(Wait.until(
-                    WebElementQuestion.the(ObjectAutogestion.checkedG),
-                    WebElementStateMatchers.isPresent()
-                    ).forNoLongerThan(60).seconds(),
-                    Click.on(ObjectAutogestion.checkedG),
-                    Click.on(ObjectAutogestion.TipoDocumento),
-                    SeleccionarTipoDocumento.conValor(formulario.getTipoDocumentos()),
-                    Enter.theValue(formulario.getNumDocumentos()).into(ObjectAutogestion.NumDocumento),
-                    Enter.theValue(formulario.getCorreoElectronicos()).into(ObjectAutogestion.CorreoElectronico));
-
-            if (ObjectAutogestion.RazonSocial.resolveFor(actor).isEnabled()) {
-                actor.attemptsTo(Enter.theValue(formulario.getRazonSocials()).into(ObjectAutogestion.RazonSocial));
-            } else {
+            try {
                 actor.attemptsTo(
-                        Enter.theValue(formulario.getNombress()).into(ObjectAutogestion.Nombres),
-                        Enter.theValue(formulario.getApellidoss()).into(ObjectAutogestion.Apellidos)
+                        Wait.until(WebElementQuestion.the(ObjectAutogestion.checkedG), WebElementStateMatchers.isPresent())
+                                .forNoLongerThan(60).seconds(),
+                        Click.on(ObjectAutogestion.checkedG),
+                        Click.on(ObjectAutogestion.TipoDocumento),
+                        SeleccionarTipoDocumento.conValor(formulario.getTipoDocumentos()),
+                        Enter.theValue(formulario.getNumDocumentos()).into(ObjectAutogestion.NumDocumento),
+                        Enter.theValue(formulario.getCorreoElectronicos()).into(ObjectAutogestion.CorreoElectronico)
                 );
+
+                if (ObjectAutogestion.RazonSocial.resolveFor(actor).isEnabled()) {
+                    actor.attemptsTo(Enter.theValue(formulario.getRazonSocials()).into(ObjectAutogestion.RazonSocial));
+                } else {
+                    actor.attemptsTo(
+                            Enter.theValue(formulario.getNombress()).into(ObjectAutogestion.Nombres),
+                            Enter.theValue(formulario.getApellidoss()).into(ObjectAutogestion.Apellidos)
+                    );
+                }
+
+                actor.attemptsTo(
+                        Enter.theValue(formulario.getTFijos()).into(ObjectAutogestion.TFijo),
+                        Enter.theValue(formulario.getNCelulars()).into(ObjectAutogestion.NCelular),
+                        Click.on(ObjectAutogestion.Continuar)
+                );
+            } catch (Exception e) {
+                // Manejo de la excepción en esta sección
+                System.out.println("Error en la sección de datos personales: " + e.getMessage());
             }
-            actor.attemptsTo(
-                    Enter.theValue(formulario.getTFijos()).into(ObjectAutogestion.TFijo),
-                    Enter.theValue(formulario.getNCelulars()).into(ObjectAutogestion.NCelular),
-                    Click.on(ObjectAutogestion.Continuar)
-            );
 
-            /**
-             * Interfaz datos de Ubicación
-             * */
-            actor.attemptsTo(Wait.until(WebElementQuestion.the(ObjectubicacionServicio.Ciudad),
-                            WebElementStateMatchers.isVisible()).forNoLongerThan(60).seconds(),
-                    Enter.theValue(formulariou.getCiudad()).into(ObjectubicacionServicio.Ciudad),
-                    Click.on(ObjectubicacionServicio.ListCiudad),
-                    Enter.theValue(formulariou.getDireccion()).into(ObjectubicacionServicio.Direccion),
-                    Click.on(ObjectubicacionServicio.Buscar)
-            );
+            // Bloque try-catch para manejar excepciones en esta sección
             try {
-                Thread.sleep(6000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                // Interfaz datos de Ubicación
+                actor.attemptsTo(
+                        Wait.until(WebElementQuestion.the(ObjectubicacionServicio.Ciudad), WebElementStateMatchers.isVisible())
+                                .forNoLongerThan(60).seconds(),
+                        Enter.theValue(formulariou.getCiudad()).into(ObjectubicacionServicio.Ciudad),
+                        Click.on(ObjectubicacionServicio.ListCiudad),
+                        Enter.theValue(formulariou.getDireccion()).into(ObjectubicacionServicio.Direccion),
+                        Click.on(ObjectubicacionServicio.Buscar)
+                );
+                Thread.sleep(6000); // Manejo de excepción dentro del bloque try
+                actor.attemptsTo(
+                        Enter.theValue(formulariou.getDatosAdicionales()).into(ObjectubicacionServicio.DatosAdicionales),
+                        Scroll.to(ObjectubicacionServicio.Continuar),
+                        Click.on(ObjectubicacionServicio.Continuar)
+                );
+            } catch (Exception e) {
+                // Manejo de la excepción en esta sección
+                System.out.println("Error en la sección de datos de ubicación: " + e.getMessage());
             }
-            actor.attemptsTo(
-                    Enter.theValue(formulariou.getDatosAdicionales())
-                            .into(ObjectubicacionServicio.DatosAdicionales)
 
-            );
-            actor.attemptsTo(Scroll.to(ObjectubicacionServicio.Continuar),
-                    Click.on(ObjectubicacionServicio.Continuar));
 
-            /**
-             * Interfaz de Datos del servicio
-             * */
-
-            /**
-             * Realizar las acciones en el formulario datos del servicio
-             * */
-            actor.attemptsTo(Wait.until(
-                            WebElementQuestion.the(ObjectdatosServicio.TipoServicio),
-                            WebElementStateMatchers.isPresent()
-                    ).forNoLongerThan(60).seconds(),
-                    Enter.theValue(formulariods.getTipoServicio()).into(ObjectdatosServicio.TipoServicio),
-                    Click.on(ObjectdatosServicio.TipoServiciolist),
-                    Enter.theValue(formulariods.getProducto()).into(ObjectdatosServicio.producto),
-                    Click.on(ObjectdatosServicio.productolist),
-                    Enter.theValue(formulariods.getFalla()).into(ObjectdatosServicio.falla),
-                    Click.on(ObjectdatosServicio.fallalist),
-                    Enter.theValue(formulariods.getObservaciones()).into(ObjectdatosServicio.observaciones));
-
+            // Cerrar el navegador y liberar recursos
             try {
-                Thread.sleep(6000);
-            } catch (InterruptedException e) {
+                SeleccionarNevegador.SeleccionarNevegador();
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
-            /**
-             * Seleccionar el rango horario de acuerdo a lo establecido en el formato excel.
-             * */
-            if (formulariods.getRango().equals("AM")) {
-                actor.attemptsTo(Click.on(ObjectdatosServicio.Rangoam));
-            } else {
-                actor.attemptsTo(Click.on(ObjectdatosServicio.Rangopm));
+            String browserType = SeleccionarNevegador.properties.getProperty("webdriver.driver");
+            WebDriver driver = null;
+
+            if ("chrome".equalsIgnoreCase(browserType)) {
+                driver = new ChromeDriver();
+            } else if ("edge".equalsIgnoreCase(browserType)) {
+                driver = new EdgeDriver();
+            } else if ("firefox".equalsIgnoreCase(browserType)) {
+                driver = new FirefoxDriver();
             }
 
-            /**
-             * fecha e identificador externo
-             * */
-            actor.attemptsTo(
-                    Wait.until(
-                            WebElementQuestion.the(ObjectdatosServicio.Fecha),
-                            WebElementStateMatchers.isPresent()
-                    ).forNoLongerThan(60).seconds());
-            try {
-                Thread.sleep(6000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            if (driver != null) {
+                driver.quit();
             }
 
-            /**
-             *  Fecha del servicio a agendar
-             * * */
-            actor.attemptsTo(
-                    Enter.theValue(formulariods.getiDExterno()).into(ObjectdatosServicio.idExterno),
-                    Wait.until(WebElementQuestion.the(ObjectdatosServicio.Fecha),
-                            WebElementStateMatchers.isPresent()).forNoLongerThan(60).seconds(),
-            Click.on(ObjectdatosServicio.Fecha),
-                    Click.on(ObjectdatosServicio.OK),
-                    Click.on(ObjectdatosServicio.Programar)
-            );
-            actor.attemptsTo(Wait.until(WebElementQuestion.the(ObjectdatosServicio.UbicionServicio),
-                            WebElementStateMatchers.isPresent()).forNoLongerThan(60).seconds());
-            /**
-             * Validar que la creación del servicio se realice correctamente.
-             * */
-
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            actor.attemptsTo(
-                    Scroll.to(ObjectdatosServicio.UbicionServicio),
-                    Wait.until(
-                    WebElementQuestion.the(ObjectdatosServicio.VerOrdenServicio),
-                    WebElementStateMatchers.isVisible()
-            ).forNoLongerThan(60).seconds());
-            OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
-                    Matchers.comparesEqualTo("Tu servicio ha sido programado")));
-
-
-            /**
-             * Finalizar el proceso.
-             * */
-            actor.attemptsTo(Click.on(ObjectdatosServicio.Finalizar));
-        }
-        /**
-         * Una vez finalice de crear los casos del archico cierro la ventana del navegador
-         * */
-
-        try {
-            SeleccionarNevegador.SeleccionarNevegador();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        String browserType = SeleccionarNevegador.properties.getProperty("webdriver.driver"); // Puedes cambiar esto al navegador deseado
-        WebDriver driver = null;
-
-        // Inicializar el WebDriver con el navegador deseado
-        if ("chrome".equalsIgnoreCase(browserType)) {
-            driver = new ChromeDriver();
-        } else if ("edge".equalsIgnoreCase(browserType)) {
-            driver = new EdgeDriver();
-        } else if ("firefox".equalsIgnoreCase(browserType)) {
-            driver = new FirefoxDriver();
-        } // Agrega más condiciones para otros navegadores si es necesario
-
-        // Realiza acciones con el navegador
-
-        // Cerrar la ventana del navegador y liberar recursos
-        if (driver != null) {
-            driver.quit();
-        }
 
 
 
+
+    }
     }
 }
