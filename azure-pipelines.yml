@@ -27,5 +27,11 @@ steps:
       artifactName: 'SerenityReports'
     displayName: 'Publicar informes de Serenity BDD'
 
+  - script: |
+      echo 'Continuando a pesar de errores...'
+    displayName: 'Continuar en caso de errores'
+    continueOnError: true
+
+
 
 
