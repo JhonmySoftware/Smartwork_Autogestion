@@ -24,21 +24,10 @@ public class AbrirPagina implements Task {
         try {
             // Open the browser and maximize the window
             actor.attemptsTo(Open.browserOn(objectAbrirPagina));
-
-            // Maximize the browser window
-            WebDriverFacade webDriverFacade = (WebDriverFacade) getDriver();
-            WebDriver originalDriver = webDriverFacade.getProxiedDriver();
-            originalDriver.manage().window().maximize();
-
             Thread.sleep(3000);
         } catch (Exception e) {
-            throw new RuntimeException("Error al abrir la página y maximizar la ventana del navegador", e);
+            throw new RuntimeException("Error al abrir la página", e);
         }
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
