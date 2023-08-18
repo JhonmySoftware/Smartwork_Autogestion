@@ -22,7 +22,6 @@ public class MyStepdefs {
     @Before
     public void IniciarEscenario() {
         OnStage.setTheStage(new OnlineCast());
-        System.setProperty("webdriver.edge.driver", "src/test/resources/driver/msedgedriver.exe");
     }
 
     @Dado("^el usuario final cuando desee crear o agendar una orden de servicio$")
@@ -32,11 +31,11 @@ public class MyStepdefs {
 
     @Cuando("^Crea la orden de servicio$")
     public void creaLaOrdenDeServicio() {
-        OnStage.theActorCalled("jhon").wasAbleTo(Autogestion.withExcelFile());
+        OnStage.theActorCalled("jhon")
+                .wasAbleTo(Autogestion.withExcelFile());
     }
 
     @Entonces("^verifica que se creo correctamente la orden de servicio$")
     public void verificaQueSeCreoCorrectamenteLaOrdenDeServicio() {
-
-        }
+    }
 }
