@@ -5,10 +5,6 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Open;
-import net.thucydides.core.webdriver.WebDriverFacade;
-import org.openqa.selenium.WebDriver;
-
-import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
 public class AbrirPagina implements Task {
 
