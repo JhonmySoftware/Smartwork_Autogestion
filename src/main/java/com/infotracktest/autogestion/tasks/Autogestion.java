@@ -143,8 +143,6 @@ public class Autogestion implements Task {
 
             try {
                 actor.attemptsTo(
-                        Wait.until(WebElementQuestion.the(ObjectAutogestion.checkedG), WebElementStateMatchers.isEnabled())
-                                .forNoLongerThan(60).seconds(),
                         Click.on(ObjectAutogestion.checkedG),
                         Click.on(ObjectAutogestion.TipoDocumento),
                         SeleccionarTipoDocumento.conValor(formulario.getTipoDocumentos()),
@@ -167,11 +165,13 @@ public class Autogestion implements Task {
                         Click.on(ObjectAutogestion.Continuar)
                 );
 
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 // Interfaz datos de Ubicación
                 actor.attemptsTo(
-                        Wait.until(WebElementQuestion.the(ObjectubicacionServicio.Ciudad),
-                                        WebElementStateMatchers.isVisible())
-                                .forNoLongerThan(60).seconds(),
                         Enter.theValue(formulariou.getCiudad()).into(ObjectubicacionServicio.Ciudad),
                         Click.on(ObjectubicacionServicio.ListCiudad),
                         Enter.theValue(formulariou.getDireccion()).into(ObjectubicacionServicio.Direccion),
@@ -186,11 +186,14 @@ public class Autogestion implements Task {
                         Click.on(ObjectubicacionServicio.Continuar)
                 );
 
+
+                try {
+                    Thread.sleep(6000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 // Interfaz de Datos del servicio
                 actor.attemptsTo(
-                        Wait.until(WebElementQuestion.the(ObjectdatosServicio.TipoServicio),
-                                        WebElementStateMatchers.isVisible())
-                                .forNoLongerThan(60).seconds(),
                         Enter.theValue(formulariods.getTipoServicio()).into(ObjectdatosServicio.TipoServicio),
                         Click.on(ObjectdatosServicio.TipoServiciolist),
                         Enter.theValue(formulariods.getProducto()).into(ObjectdatosServicio.producto),
@@ -221,19 +224,16 @@ public class Autogestion implements Task {
                 // Fecha del servicio a agendar
                 actor.attemptsTo(
                         Enter.theValue(formulariods.getiDExterno()).into(ObjectdatosServicio.idExterno),
-                        Wait.until(WebElementQuestion.the(ObjectdatosServicio.Fecha),
-                                        WebElementStateMatchers.isVisible())
-                                .forNoLongerThan(60).seconds(),
                         Click.on(ObjectdatosServicio.Fecha),
                         Click.on(ObjectdatosServicio.OK),
                         Click.on(ObjectdatosServicio.Programar)
                 );
 
-                actor.attemptsTo(
-                        Wait.until(WebElementQuestion.the(ObjectdatosServicio.UbicionServicio),
-                                        WebElementStateMatchers.isVisible())
-                                .forNoLongerThan(60).seconds()
-                );
+                try {
+                    Thread.sleep(6000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
 
                 // Validar que la creación del servicio se realice correctamente.
                 OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
