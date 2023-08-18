@@ -22,8 +22,6 @@ public class AbrirPagina implements Task {
     public <T extends Actor> void performAs(T actor) {
 
         try {
-            System.setProperty("webdriver.edge.driver", "src/test/resources/driver/msedgedriver.exe");
-
             // Open the browser and maximize the window
             actor.attemptsTo(Open.browserOn(objectAbrirPagina));
 

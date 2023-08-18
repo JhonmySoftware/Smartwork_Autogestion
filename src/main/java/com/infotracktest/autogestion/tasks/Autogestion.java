@@ -192,6 +192,94 @@ public class Autogestion implements Task {
                 System.out.println("Error en la sección de datos de ubicación: " + e.getMessage());
             }
 
+            /**
+             * Interfaz de Datos del servicio
+             * */
+
+            /**
+             * Realizar las acciones en el formulario datos del servicio
+             * */
+            actor.attemptsTo(Wait.until(
+                            WebElementQuestion.the(ObjectdatosServicio.TipoServicio),
+                            WebElementStateMatchers.isPresent()
+                    ).forNoLongerThan(60).seconds(),
+                    Enter.theValue(formulariods.getTipoServicio()).into(ObjectdatosServicio.TipoServicio),
+                    Click.on(ObjectdatosServicio.TipoServiciolist),
+                    Enter.theValue(formulariods.getProducto()).into(ObjectdatosServicio.producto),
+                    Click.on(ObjectdatosServicio.productolist),
+                    Enter.theValue(formulariods.getFalla()).into(ObjectdatosServicio.falla),
+                    Click.on(ObjectdatosServicio.fallalist),
+                    Enter.theValue(formulariods.getObservaciones()).into(ObjectdatosServicio.observaciones));
+
+            try {
+                Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            /**
+             * Seleccionar el rango horario de acuerdo a lo establecido en el formato excel.
+             * */
+            if (formulariods.getRango().equals("AM")) {
+                actor.attemptsTo(Click.on(ObjectdatosServicio.Rangoam));
+            } else {
+                actor.attemptsTo(Click.on(ObjectdatosServicio.Rangopm));
+            }
+
+            /**
+             * fecha e identificador externo
+             * */
+            actor.attemptsTo(
+                    Wait.until(
+                            WebElementQuestion.the(ObjectdatosServicio.Fecha),
+                            WebElementStateMatchers.isPresent()
+                    ).forNoLongerThan(60).seconds());
+            try {
+                Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            /**
+             *  Fecha del servicio a agendar
+             * * */
+            actor.attemptsTo(
+                    Enter.theValue(formulariods.getiDExterno()).into(ObjectdatosServicio.idExterno),
+                    Wait.until(WebElementQuestion.the(ObjectdatosServicio.Fecha),
+                            WebElementStateMatchers.isPresent()).forNoLongerThan(60).seconds(),
+                    Click.on(ObjectdatosServicio.Fecha),
+                    Click.on(ObjectdatosServicio.OK),
+                    Click.on(ObjectdatosServicio.Programar)
+            );
+            actor.attemptsTo(Wait.until(WebElementQuestion.the(ObjectdatosServicio.UbicionServicio),
+                    WebElementStateMatchers.isPresent()).forNoLongerThan(60).seconds());
+
+            /**
+             * Validar que la creación del servicio se realice correctamente.
+             * */
+
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            actor.attemptsTo(
+                    Scroll.to(ObjectdatosServicio.UbicionServicio),
+                    Wait.until(
+                            WebElementQuestion.the(ObjectdatosServicio.VerOrdenServicio),
+                            WebElementStateMatchers.isVisible()
+                    ).forNoLongerThan(60).seconds());
+            OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
+                    Matchers.comparesEqualTo("Tu servicio ha sido programado")));
+
+
+            /**
+             * Finalizar el proceso.
+             * */
+            actor.attemptsTo(Click.on(ObjectdatosServicio.Finalizar));
+
+
 
             // Cerrar el navegador y liberar recursos
             try {

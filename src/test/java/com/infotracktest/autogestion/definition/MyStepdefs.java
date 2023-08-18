@@ -10,7 +10,11 @@ import cucumber.api.java.es.Entonces;
 import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.thucydides.core.webdriver.WebDriverFacade;
 import org.hamcrest.Matchers;
+import org.openqa.selenium.WebDriver;
+
+import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
 public class MyStepdefs {
 
@@ -18,6 +22,7 @@ public class MyStepdefs {
     @Before
     public void IniciarEscenario() {
         OnStage.setTheStage(new OnlineCast());
+        System.setProperty("webdriver.edge.driver", "src/test/resources/driver/msedgedriver.exe");
     }
 
     @Dado("^el usuario final cuando desee crear o agendar una orden de servicio$")
