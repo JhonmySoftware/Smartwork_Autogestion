@@ -236,10 +236,6 @@ public class Autogestion implements Task {
                     ).forNoLongerThan(60).seconds());
             try {
                 Thread.sleep(6000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
             /**
              *  Fecha del servicio a agendar
              * * */
@@ -257,25 +253,24 @@ public class Autogestion implements Task {
             /**
              * Validar que la creación del servicio se realice correctamente.
              * */
-
-            OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
-                    Matchers.comparesEqualTo("Tu servicio ha sido programado")));
-
-            try {
-                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
-            actor.attemptsTo(
-                    Scroll.to(ObjectdatosServicio.UbicionServicio));
+            try {
+            OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
+                    Matchers.comparesEqualTo("Tu servicio ha sido programado")));
+                Thread.sleep(3000);
+                actor.attemptsTo(
+                        Scroll.to(ObjectdatosServicio.UbicionServicio));
+                /**
+                 * Finalizar el proceso.
+                 * */
+                actor.attemptsTo(Click.on(ObjectdatosServicio.Finalizar));
 
-
-
-            /**
-             * Finalizar el proceso.
-             * */
-            actor.attemptsTo(Click.on(ObjectdatosServicio.Finalizar));
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
 
 
