@@ -199,31 +199,32 @@ public class Autogestion implements Task {
             /**
              * Realizar las acciones en el formulario datos del servicio
              * */
-            actor.attemptsTo(Wait.until(
-                            WebElementQuestion.the(ObjectdatosServicio.TipoServicio),
-                            WebElementStateMatchers.isPresent()
-                    ).forNoLongerThan(60).seconds(),
-                    Enter.theValue(formulariods.getTipoServicio()).into(ObjectdatosServicio.TipoServicio),
-                    Click.on(ObjectdatosServicio.TipoServiciolist),
-                    Enter.theValue(formulariods.getProducto()).into(ObjectdatosServicio.producto),
-                    Click.on(ObjectdatosServicio.productolist),
-                    Enter.theValue(formulariods.getFalla()).into(ObjectdatosServicio.falla),
-                    Click.on(ObjectdatosServicio.fallalist),
-                    Enter.theValue(formulariods.getObservaciones()).into(ObjectdatosServicio.observaciones));
 
             try {
-                Thread.sleep(6000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+                actor.attemptsTo(Wait.until(
+                                WebElementQuestion.the(ObjectdatosServicio.TipoServicio),
+                                WebElementStateMatchers.isPresent()
+                        ).forNoLongerThan(60).seconds(),
+                        Enter.theValue(formulariods.getTipoServicio()).into(ObjectdatosServicio.TipoServicio),
+                        Click.on(ObjectdatosServicio.TipoServiciolist),
+                        Enter.theValue(formulariods.getProducto()).into(ObjectdatosServicio.producto),
+                        Click.on(ObjectdatosServicio.productolist),
+                        Enter.theValue(formulariods.getFalla()).into(ObjectdatosServicio.falla),
+                        Click.on(ObjectdatosServicio.fallalist),
+                        Enter.theValue(formulariods.getObservaciones()).into(ObjectdatosServicio.observaciones));
 
-            /**
-             * Seleccionar el rango horario de acuerdo a lo establecido en el formato excel.
-             * */
-            if (formulariods.getRango().equals("AM")) {
-                actor.attemptsTo(Click.on(ObjectdatosServicio.Rangoam));
-            } else {
-                actor.attemptsTo(Click.on(ObjectdatosServicio.Rangopm));
+                Thread.sleep(6000);
+
+                /**
+                 * Seleccionar el rango horario de acuerdo a lo establecido en el formato excel.
+                 * */
+                if (formulariods.getRango().equals("AM")) {
+                    actor.attemptsTo(Click.on(ObjectdatosServicio.Rangoam));
+                } else {
+                    actor.attemptsTo(Click.on(ObjectdatosServicio.Rangopm));
+                }
+            }catch (Exception e){
+                System.out.println("Error en la sección de datos de Datos: " + e.getMessage());
             }
 
             /**
@@ -236,6 +237,9 @@ public class Autogestion implements Task {
                     ).forNoLongerThan(60).seconds());
             try {
                 Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             /**
              *  Fecha del servicio a agendar
              * * */
@@ -253,53 +257,50 @@ public class Autogestion implements Task {
             /**
              * Validar que la creación del servicio se realice correctamente.
              * */
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
 
-            try {
             OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
                     Matchers.comparesEqualTo("Tu servicio ha sido programado")));
-                Thread.sleep(3000);
-                actor.attemptsTo(
-                        Scroll.to(ObjectdatosServicio.UbicionServicio));
-                /**
-                 * Finalizar el proceso.
-                 * */
-                actor.attemptsTo(Click.on(ObjectdatosServicio.Finalizar));
 
+            try {
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
+            actor.attemptsTo(
+                    Scroll.to(ObjectdatosServicio.UbicionServicio));
+
+
+
+            /**
+             * Finalizar el proceso.
+             * */
+            actor.attemptsTo(Click.on(ObjectdatosServicio.Finalizar));
 
 
             // Cerrar el navegador y liberar recursos
             try {
                 SeleccionarNevegador.SeleccionarNevegador();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                String browserType = SeleccionarNevegador.properties.getProperty("webdriver.driver");
+                WebDriver driver = null;
+
+                if ("chrome".equalsIgnoreCase(browserType)) {
+                    driver = new ChromeDriver();
+                } else if ("edge".equalsIgnoreCase(browserType)) {
+                    driver = new EdgeDriver();
+                } else if ("firefox".equalsIgnoreCase(browserType)) {
+                    driver = new FirefoxDriver();
+                }
+
+                if (driver != null) {
+                    driver.quit();
+                }
+
+            } catch (Exception e) {
+                System.out.println("Error en la sección de datos de Datos 2: " + e.getMessage());
             }
 
-            String browserType = SeleccionarNevegador.properties.getProperty("webdriver.driver");
-            WebDriver driver = null;
 
-            if ("chrome".equalsIgnoreCase(browserType)) {
-                driver = new ChromeDriver();
-            } else if ("edge".equalsIgnoreCase(browserType)) {
-                driver = new EdgeDriver();
-            } else if ("firefox".equalsIgnoreCase(browserType)) {
-                driver = new FirefoxDriver();
-            }
-
-            if (driver != null) {
-                driver.quit();
-            }
-
-
-
-
-
-    }
+        }
     }
 }
