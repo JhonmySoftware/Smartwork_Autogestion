@@ -20,14 +20,13 @@ public class AbrirPagina implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-
+        actor.attemptsTo(Open.browserOn(objectAbrirPagina));
         try {
-            // Open the browser and maximize the window
-            actor.attemptsTo(Open.browserOn(objectAbrirPagina));
             Thread.sleep(3000);
-        } catch (Exception e) {
-            throw new RuntimeException("Error al abrir la página", e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
+
 
     }
 }
