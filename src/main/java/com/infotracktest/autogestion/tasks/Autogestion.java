@@ -258,6 +258,9 @@ public class Autogestion implements Task {
              * Validar que la creación del servicio se realice correctamente.
              * */
 
+            OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
+                    Matchers.comparesEqualTo("Tu servicio ha sido programado")));
+
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -265,13 +268,8 @@ public class Autogestion implements Task {
             }
 
             actor.attemptsTo(
-                    Scroll.to(ObjectdatosServicio.UbicionServicio),
-                    Wait.until(
-                            WebElementQuestion.the(ObjectdatosServicio.VerOrdenServicio),
-                            WebElementStateMatchers.isVisible()
-                    ).forNoLongerThan(60).seconds());
-            OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
-                    Matchers.comparesEqualTo("Tu servicio ha sido programado")));
+                    Scroll.to(ObjectdatosServicio.UbicionServicio));
+
 
 
             /**
