@@ -11,12 +11,14 @@ import com.infotracktest.autogestion.userinterfaces.ObjectubicacionServicio;
 import com.infotracktest.autogestion.utlis.DatosRandom;
 import com.infotracktest.autogestion.utlis.ExcelReader;
 import com.infotracktest.autogestion.utlis.SeleccionarNevegador;
-import net.serenitybdd.screenplay.*;
+import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.GivenWhenThen;
+import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.actors.OnStage;
-import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.questions.WebElementQuestion;
 import net.serenitybdd.screenplay.waits.Wait;
@@ -141,7 +143,6 @@ public class Autogestion implements Task {
                 throw new RuntimeException(e);
             }
 
-            try {
                 actor.attemptsTo(
                         Wait.until(WebElementQuestion.the(ObjectAutogestion.checkedG), WebElementStateMatchers.isEnabled())
                                 .forNoLongerThan(60).seconds(),
@@ -178,9 +179,13 @@ public class Autogestion implements Task {
                         Click.on(ObjectubicacionServicio.Buscar)
                 );
 
+            try {
                 Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
-                actor.attemptsTo(
+            actor.attemptsTo(
                         Enter.theValue(formulariou.getDatosAdicionales()).into(ObjectubicacionServicio.DatosAdicionales),
                         Scroll.to(ObjectubicacionServicio.Continuar),
                         Click.on(ObjectubicacionServicio.Continuar)
@@ -200,9 +205,13 @@ public class Autogestion implements Task {
                         Enter.theValue(formulariods.getObservaciones()).into(ObjectdatosServicio.observaciones)
                 );
 
+            try {
                 Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
-                // Seleccionar el rango horario de acuerdo a lo establecido en el formato excel.
+            // Seleccionar el rango horario de acuerdo a lo establecido en el formato excel.
                 if (formulariods.getRango().equals("AM")) {
                     actor.attemptsTo(Click.on(ObjectdatosServicio.Rangoam));
                 } else {
@@ -216,9 +225,13 @@ public class Autogestion implements Task {
                                 .forNoLongerThan(60).seconds()
                 );
 
+            try {
                 Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
-                // Fecha del servicio a agendar
+            // Fecha del servicio a agendar
                 actor.attemptsTo(
                         Enter.theValue(formulariods.getiDExterno()).into(ObjectdatosServicio.idExterno),
                         Wait.until(WebElementQuestion.the(ObjectdatosServicio.Fecha),
@@ -239,16 +252,24 @@ public class Autogestion implements Task {
                 OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
                         Matchers.comparesEqualTo("Tu servicio ha sido programado")));
 
+            try {
                 Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
-                actor.attemptsTo(
+            actor.attemptsTo(
                         Scroll.to(ObjectdatosServicio.UbicionServicio),
                         Click.on(ObjectdatosServicio.Finalizar)
                 );
 
                 // Cerrar el navegador y liberar recursos
+            try {
                 SeleccionarNevegador.SeleccionarNevegador();
-                String browserType = SeleccionarNevegador.properties.getProperty("webdriver.driver");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String browserType = SeleccionarNevegador.properties.getProperty("webdriver.driver");
                 WebDriver driver = null;
 
                 try {
@@ -275,11 +296,6 @@ public class Autogestion implements Task {
                         }
                     }
                 }
-
-            } catch (Exception e) {
-                // Manejo de excepciones generales
-                System.out.println("Error en las pruebas: " + e.getMessage());
-            }
 
         }
     }
