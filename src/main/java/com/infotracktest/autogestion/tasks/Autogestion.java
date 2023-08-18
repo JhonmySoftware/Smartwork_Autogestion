@@ -134,6 +134,7 @@ public class Autogestion implements Task {
              * No se recomienda utilizar el Thread sleep, se aplica por temas de lentitud
              * del sitio web.
              * */
+
             try {
                 Thread.sleep(10000);
             } catch (InterruptedException e) {
@@ -165,13 +166,7 @@ public class Autogestion implements Task {
                         Enter.theValue(formulario.getNCelulars()).into(ObjectAutogestion.NCelular),
                         Click.on(ObjectAutogestion.Continuar)
                 );
-            } catch (Exception e) {
-                // Manejo de la excepción en esta sección
-                System.out.println("Error en la sección de datos personales: " + e.getMessage());
-            }
 
-            // Bloque try-catch para manejar excepciones en esta sección
-            try {
                 // Interfaz datos de Ubicación
                 actor.attemptsTo(
                         Wait.until(WebElementQuestion.the(ObjectubicacionServicio.Ciudad), WebElementStateMatchers.isVisible())
@@ -181,125 +176,97 @@ public class Autogestion implements Task {
                         Enter.theValue(formulariou.getDireccion()).into(ObjectubicacionServicio.Direccion),
                         Click.on(ObjectubicacionServicio.Buscar)
                 );
-                Thread.sleep(6000); // Manejo de excepción dentro del bloque try
+
+                Thread.sleep(6000);
+
                 actor.attemptsTo(
                         Enter.theValue(formulariou.getDatosAdicionales()).into(ObjectubicacionServicio.DatosAdicionales),
                         Scroll.to(ObjectubicacionServicio.Continuar),
                         Click.on(ObjectubicacionServicio.Continuar)
                 );
-            } catch (Exception e) {
-                // Manejo de la excepción en esta sección
-                System.out.println("Error en la sección de datos de ubicación: " + e.getMessage());
-            }
 
-            /**
-             * Interfaz de Datos del servicio
-             * */
-
-            /**
-             * Realizar las acciones en el formulario datos del servicio
-             * */
-
-            try {
-                actor.attemptsTo(Wait.until(
-                                WebElementQuestion.the(ObjectdatosServicio.TipoServicio),
-                                WebElementStateMatchers.isPresent()
-                        ).forNoLongerThan(60).seconds(),
+                // Interfaz de Datos del servicio
+                actor.attemptsTo(
+                        Wait.until(WebElementQuestion.the(ObjectdatosServicio.TipoServicio), WebElementStateMatchers.isPresent())
+                                .forNoLongerThan(60).seconds(),
                         Enter.theValue(formulariods.getTipoServicio()).into(ObjectdatosServicio.TipoServicio),
                         Click.on(ObjectdatosServicio.TipoServiciolist),
                         Enter.theValue(formulariods.getProducto()).into(ObjectdatosServicio.producto),
                         Click.on(ObjectdatosServicio.productolist),
                         Enter.theValue(formulariods.getFalla()).into(ObjectdatosServicio.falla),
                         Click.on(ObjectdatosServicio.fallalist),
-                        Enter.theValue(formulariods.getObservaciones()).into(ObjectdatosServicio.observaciones));
+                        Enter.theValue(formulariods.getObservaciones()).into(ObjectdatosServicio.observaciones)
+                );
 
                 Thread.sleep(6000);
 
-                /**
-                 * Seleccionar el rango horario de acuerdo a lo establecido en el formato excel.
-                 * */
+                // Seleccionar el rango horario de acuerdo a lo establecido en el formato excel.
                 if (formulariods.getRango().equals("AM")) {
                     actor.attemptsTo(Click.on(ObjectdatosServicio.Rangoam));
                 } else {
                     actor.attemptsTo(Click.on(ObjectdatosServicio.Rangopm));
                 }
-            }catch (Exception e){
-                System.out.println("Error en la sección de datos de Datos: " + e.getMessage());
-            }
 
-            /**
-             * fecha e identificador externo
-             * */
-            actor.attemptsTo(
-                    Wait.until(
-                            WebElementQuestion.the(ObjectdatosServicio.Fecha),
-                            WebElementStateMatchers.isPresent()
-                    ).forNoLongerThan(60).seconds());
-            try {
+                // Fecha e identificador externo
+                actor.attemptsTo(
+                        Wait.until(WebElementQuestion.the(ObjectdatosServicio.Fecha), WebElementStateMatchers.isPresent())
+                                .forNoLongerThan(60).seconds()
+                );
+
                 Thread.sleep(6000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            /**
-             *  Fecha del servicio a agendar
-             * * */
-            actor.attemptsTo(
-                    Enter.theValue(formulariods.getiDExterno()).into(ObjectdatosServicio.idExterno),
-                    Wait.until(WebElementQuestion.the(ObjectdatosServicio.Fecha),
-                            WebElementStateMatchers.isPresent()).forNoLongerThan(60).seconds(),
-                    Click.on(ObjectdatosServicio.Fecha),
-                    Click.on(ObjectdatosServicio.OK),
-                    Click.on(ObjectdatosServicio.Programar)
-            );
-            actor.attemptsTo(Wait.until(WebElementQuestion.the(ObjectdatosServicio.UbicionServicio),
-                    WebElementStateMatchers.isPresent()).forNoLongerThan(60).seconds());
 
-//            /**
-//             * Validar que la creación del servicio se realice correctamente.
-//             * */
-//
-//            OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
-//                    Matchers.comparesEqualTo("Tu servicio ha sido programado")));
+                // Fecha del servicio a agendar
+                actor.attemptsTo(
+                        Enter.theValue(formulariods.getiDExterno()).into(ObjectdatosServicio.idExterno),
+                        Wait.until(WebElementQuestion.the(ObjectdatosServicio.Fecha), WebElementStateMatchers.isPresent())
+                                .forNoLongerThan(60).seconds(),
+                        Click.on(ObjectdatosServicio.Fecha),
+                        Click.on(ObjectdatosServicio.OK),
+                        Click.on(ObjectdatosServicio.Programar)
+                );
 
-            try {
+                actor.attemptsTo(
+                        Wait.until(WebElementQuestion.the(ObjectdatosServicio.UbicionServicio), WebElementStateMatchers.isPresent())
+                                .forNoLongerThan(60).seconds()
+                );
+
+                // Validar que la creación del servicio se realice correctamente.
+                OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(VerOrdenServicio.one(),
+                        Matchers.comparesEqualTo("Tu servicio ha sido programado")));
+
                 Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
 
-            actor.attemptsTo(
-                    Scroll.to(ObjectdatosServicio.UbicionServicio));
+                actor.attemptsTo(
+                        Scroll.to(ObjectdatosServicio.UbicionServicio),
+                        Click.on(ObjectdatosServicio.Finalizar)
+                );
 
-
-
-            /**
-             * Finalizar el proceso.
-             * */
-            actor.attemptsTo(Click.on(ObjectdatosServicio.Finalizar));
-
-
-            // Cerrar el navegador y liberar recursos
-            try {
+                // Cerrar el navegador y liberar recursos
                 SeleccionarNevegador.SeleccionarNevegador();
                 String browserType = SeleccionarNevegador.properties.getProperty("webdriver.driver");
                 WebDriver driver = null;
 
-                if ("chrome".equalsIgnoreCase(browserType)) {
-                    driver = new ChromeDriver();
-                } else if ("edge".equalsIgnoreCase(browserType)) {
-                    driver = new EdgeDriver();
-                } else if ("firefox".equalsIgnoreCase(browserType)) {
-                    driver = new FirefoxDriver();
-                }
+                try {
+                    if ("chrome".equalsIgnoreCase(browserType)) {
+                        driver = new ChromeDriver();
+                    } else if ("edge".equalsIgnoreCase(browserType)) {
+                        driver = new EdgeDriver();
+                    } else if ("firefox".equalsIgnoreCase(browserType)) {
+                        driver = new FirefoxDriver();
+                    }
 
-                if (driver != null) {
-                    driver.quit();
+                    if (driver != null) {
+                        driver.quit();
+                    }
+                } catch (Exception e) {
+                    // Manejo de excepciones al cerrar el navegador
+                    System.out.println("Error al cerrar el navegador: " + e.getMessage());
                 }
 
             } catch (Exception e) {
-                System.out.println("Error en la sección de datos de Datos 2: " + e.getMessage());
+                // Manejo de excepciones generales
+                System.out.println("Error en las pruebas: " + e.getMessage());
             }
-
 
         }
     }
