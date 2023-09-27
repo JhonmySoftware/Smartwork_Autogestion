@@ -42,7 +42,24 @@ pipeline {
             }
         }
     }
+    post {
+        failure {
+            script {
+                emailext body: 'El trabajo Jenkins ha fallado. Por favor, verifique el informe de construcción para más detalles.',
+                         subject: "Fallo en la construcción de Jenkins",
+                         to: "${jhon.quinones@infotrack.com.co}"
+            }
+        }
+        success {
+            script {
+                emailext body: 'El trabajo Jenkins se ha ejecutado exitosamente.',
+                         subject: "Éxito en la construcción de Jenkins",
+                         to: "${jhon.quinones@infotrack.com.co}"
+            }
+        }
+    }
 }
+
 
 
 
