@@ -45,10 +45,8 @@ Este proyecto ofrece una solución para la gestión y agendamiento autónomo de 
 3. **Branch**: Crea una nueva rama para trabajar en la mejora o corrección.
 4. **Commit**: Haz commits pequeños y significativos.
 5. **Push**: Envía tus cambios a tu repositorio.
-6. **Pull Request**: Crea una nueva Pull Request para que sea revisada y agregada por los mantenedores del proyecto.
 
 
 ## ⚖ Licencia
 
-Este proyecto está bajo la [MIT License](LICENSE.md). Siéntase libre de usar, modificar y distribuir el código de cualquier forma que considere adecuada.
-
+Este proyecto está bajo la [MIT License](LICENSE.md).
