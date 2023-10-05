@@ -1,60 +1,47 @@
+import java.text.SimpleDateFormat
+import java.util.Date
+
 def dateFormat = new SimpleDateFormat("yyyyMMddHHmm")
 def date = new Date()
 def timestamp = dateFormat.format(date).toString()
+def correo = "jhon.quinones@infotrack.com.co"
 
 pipeline {
     agent any
-    parameters {
-        string(name: 'CORREO', defaultValue: 'jhon.quinones@infotrack.com.co', description: 'Correo para notificaciones')
-    }
     stages {
         stage('Run Test') {
             steps {
                 script {
-                    runTests()
+                    // Utiliza la ruta completa de Gradle aquí, y utiliza "bat" para ejecutar comandos de Windows
+                    bat 'C:\\Gradle\\gradle-8.2.1\\bin\\gradle.bat clean test aggregate --warning-mode all'
+                    echo 'Test Ejecutados Exitosamente'
                 }
             }
         }
-
         stage('Generate Reports') {
             steps {
                 script {
-                    generateReports()
+                    bat "rename \"${WORKSPACE}\\target\" serenity_${timestamp}"
+                    echo 'Backup de evidencias realizado con exito'
+                }
+            }
+            post {
+                always {
+                    // Utilizar el plugin HTML Publisher para publicar los informes HTML
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: "${WORKSPACE}\\serenity_${timestamp}",
+                        reportFiles: 'index.html',
+                        reportName: 'Reporte Modulo de autogestion',
+                        reportTitles: 'Modulo de Autogestion'
+                    ])
+                    echo 'Reporte Html realizado con exito'
                 }
             }
         }
     }
-    post {
-        always {
-            // Pasos comunes a ejecutar siempre
-        }
-        failure {
-            // Enviar correo electrónico en caso de fallo
-            mail to: "${params.CORREO}",
-                 subject: "Fallo en la Build: ${currentBuild.fullDisplayName}",
-                 body: "El build ha fallado. Verifica los logs en ${env.BUILD_URL}"
-        }
-    }
-}
-
-def runTests() {
-    bat 'gradle clean test aggregate --warning-mode none' // cambiar conforme a tus necesidades
-    echo 'Tests ejecutados exitosamente'
-}
-
-def generateReports() {
-    bat "move /Y \"${WORKSPACE}\\target\" \"${WORKSPACE}\\serenity_${timestamp}\""
-    echo 'Backup de evidencias realizado con éxito'
-    publishHTML([
-        allowMissing: false,
-        alwaysLinkToLastBuild: true,
-        keepAll: true,
-        reportDir: "serenity_${timestamp}",
-        reportFiles: 'index.html',
-        reportName: 'Reporte Módulo de autogestión',
-        reportTitles: 'Módulo de Autogestión'
-    ])
-    echo 'Reporte HTML generado con éxito'
 }
 
 
