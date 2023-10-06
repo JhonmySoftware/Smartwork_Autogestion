@@ -4,7 +4,11 @@ apply plugin: 'net.serenity-bdd.aggregator'
 
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
 
 repositories {
     mavenCentral()
@@ -18,7 +22,7 @@ buildscript {
         classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.89")
     }
 }
-ext{
+ext {
     serenityVersion = '2.0.90'
     serenityCucumberVersion = '1.9.49'
 }
@@ -35,6 +39,10 @@ dependencies {
     implementation "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
     implementation group: 'org.apache.poi', name: 'poi', version: '3.17'
     implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    testCompileOnly 'org.projectlombok:lombok:1.18.22'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 
 }
 
