@@ -14,5 +14,4 @@ import org.junit.runner.RunWith;
         , glue = "com.infotracktest.autogestion.definition")
 
 public class RunnerTags {
-    // gradle clean test aggregate -Dtags=@CP001_Creacion_OrdenServicio
 }

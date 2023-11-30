@@ -9,7 +9,7 @@ def correo = "jhon.quinones@infotrack.com.co"
 pipeline {
     agent any
     stages {
-        stage('Run Test') {
+        stage('Ejecución de pruebas') {
             steps {
                 script {
                     // Utiliza la ruta completa de Gradle aquí, y utiliza "bat" para ejecutar comandos de Windows
@@ -18,7 +18,7 @@ pipeline {
                 }
             }
         }
-        stage('Generate Reports') {
+        stage('Generar el Reporte') {
             steps {
                 script {
                     bat "rename \"${WORKSPACE}\\target\" serenity_${timestamp}"
@@ -43,7 +43,6 @@ pipeline {
         }
     }
 }
-
 
 
 

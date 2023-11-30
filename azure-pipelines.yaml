@@ -1,0 +1,42 @@
+trigger:
+  branches:
+    include:
+      - master
+      -
+pool:
+  vmImage: 'windows-latest'
+
+stages:
+  - stage: Ejecución_de_pruebas
+    jobs:
+      - job: Ejecutar_pruebas
+        steps:
+          - task: Gradle@2
+            inputs:
+              workingDirectory: '$(System.DefaultWorkingDirectory)'
+              tasks: 'clean test aggregate --warning-mode all'
+            displayName: 'Ejecutar pruebas'
+
+  - stage: Generar_el_Reporte
+    jobs:
+      - job: Generar_Reporte
+        steps:
+          - powershell: |
+              $timestamp = Get-Date -Format 'yyyyMMddHHmm'
+              $targetDirectory = "$(System.DefaultWorkingDirectory)/target"
+              $newDirectoryName = "$(System.DefaultWorkingDirectory)/serenity_$timestamp"
+              Rename-Item -Path $targetDirectory -NewName $newDirectoryName
+            displayName: 'Renombrar directorio de evidencias'
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(System.DefaultWorkingDirectory)/serenity_$timestamp'
+              ArtifactName: 'Reporte Modulo de autogestion'
+              publishLocation: 'Container'
+            displayName: 'Publicar evidencias'
+
+          - task: PublishHTML@1
+            inputs:
+              htmlFolder: '$(System.DefaultWorkingDirectory)/serenity_$timestamp'
+              reportName: 'Reporte Modulo de autogestion'
+            displayName: 'Publicar informe HTML'
